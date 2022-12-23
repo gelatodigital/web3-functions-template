@@ -179,7 +179,7 @@ const { taskId, tx } = await opsSdk.createTask({
     dedicatedMsgSender: true,
     jsResolverHash: cid, // Pass your js resolver IPFS CID
     jsResolverArgs: { // Set your JsResolver arguments
-      contract: oracleAddress,
+      oracle: oracleAddress,
       currency: "ethereum",
     },
   });
