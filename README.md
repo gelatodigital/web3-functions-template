@@ -189,7 +189,14 @@ const { taskId, tx } = await opsSdk.createTask({
 Test it with our sample task creation script:
 `yarn create-task`
 
+```
+Deploying JsResolver on IPFS...
+JsResolver IPFS CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
 
+Creating automate task...
+Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
+> https://beta.app.gelato.network/task/0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325?chainId=5
+```
 
 
 
