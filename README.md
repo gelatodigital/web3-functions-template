@@ -214,6 +214,20 @@ JsResolver Storage updated:
  ✓ lastBlockNumber: '8321923'
 ```
 
+## Use user secrets
+
+1. Fill up your secrets in `.env` file.
+```
+COINGECKO_API=https://api.coingecko.com/api/v3
+```
+
+2. Access your secrets from the JsResolver context: 
+```typescript
+  const coingeckoApi = await context.secrets.get("COINGECKO_API");
+  const coingeckoSimplePriceApi = `${coingeckoApi}/simple/price?ids=${currency}&vs_currencies=usd`;
+```
+
+
 ## Upload your JsResolver on IPFS
 
 Use `npx js-resolver upload FILENAME` command to upload your resolver.
