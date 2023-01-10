@@ -38,10 +38,16 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
   const currency = (userArgs.currency as string) ?? "ethereum";
   let price = 0;
   try {
-    const coingeckoApi = `https://api.coingecko.com/api/v3/simple/price?ids=${currency}&vs_currencies=usd`;
+    // Get api from secrets
+    const coingeckoApi = await context.secrets.get("COINGECKO_API");
+    if (!coingeckoApi)
+      return { canExec: false, message: `COINGECKO_API not set in secrets` };
+
+    const coingeckoSimplePriceApi = `${coingeckoApi}/simple/price?ids=${currency}&vs_currencies=usd`;
+    console.log(coingeckoSimplePriceApi)
 
     const priceData: { [key: string]: { usd: number } } = await ky
-      .get(coingeckoApi, { timeout: 5_000, retry: 0 })
+      .get(coingeckoSimplePriceApi, { timeout: 5_000, retry: 0 })
       .json();
     price = Math.floor(priceData[currency].usd);
   } catch (err) {
