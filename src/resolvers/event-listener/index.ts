@@ -72,7 +72,7 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
     };
   }
 
-  // Increase number of event matched on our OracleCounter contract
+  // Increase number of events matched on our OracleCounter contract
   return {
     canExec: true,
     callData: counter.interface.encodeFunctionData("increaseCount", [
