@@ -1,6 +1,20 @@
-# JsResolver template
+# JsResolver template  <!-- omit in toc -->
 Start building you JsResolvers to Automate on Gelato Network
 <br /><br />
+
+
+Example task automation using Gelato Ops SDK:
+- [Project Setup](#project-setup)
+- [Write a Js Resolver](#write-a-js-resolver)
+- [Test your resolver](#test-your-resolver)
+- [Use User arguments](#use-user-arguments)
+- [Use State / Storage](#use-state--storage)
+- [Upload your JsResolver on IPFS](#upload-your-jsresolver-on-ipfs)
+- [Create your JsResolver task](#create-your-jsresolver-task)
+- [More examples](#more-examples)
+  - [Coingecko oracle](#coingecko-oracle)
+  - [Event listener](#event-listener)
+
 
 ## Project Setup
 1. Install project dependencies
@@ -26,7 +40,7 @@ yarn install
 - Register your resolver main function using `JsResolverSdk.onChecker`
 - Example:
 ```typescript
-import { JsResolverSdk, JsResolverContext } from "../lib";
+import { JsResolverSdk, JsResolverContext } from "@gelatonetwork/js-resolver-sdk";
 import { Contract, ethers } from "ethers";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
@@ -154,6 +168,51 @@ To pass array argument (eg `string[]`), you can use:
 --user-args=arr:\[\"a\"\,\"b\"\]
 ```
 
+## Use State / Storage
+
+JsResolvers are stateless scripts, that will run in a new & empty memory context on every execution.
+If you need to manage some state variable, we provide a simple key/value store that you can access from your resolver `context`.
+
+See the above example to read & update values from your storage:
+
+```typescript
+import {
+  JsResolverSdk,
+  JsResolverContext,
+} from "@gelatonetwork/js-resolver-sdk";
+
+JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+  const { storage, provider } = context;
+
+  // Use storage to retrieve previous state (stored values are always string)
+  const lastBlockStr = (await storage.get("lastBlockNumber")) ?? "0";
+  const lastBlock = parseInt(lastBlockStr);
+  console.log(`Last block: ${lastBlock}`);
+
+  const newBlock = await provider.getBlockNumber();
+  console.log(`New block: ${newBlock}`);
+  if (newBlock > lastBlock) {
+    // Update storage to persist your current state (values must be cast to string)
+    await storage.set("lastBlockNumber", newBlock.toString());
+  }
+
+  return {
+    canExec: false,
+    message: `Updated block number: ${newBlock.toString()}`,
+  };
+});
+```
+
+Test storage execution:
+```
+npx js-resolver test RESOLVER_FILE
+```
+
+You will see your updated key/values:
+```
+JsResolver Storage updated:
+ ✓ lastBlockNumber: '8321923'
+```
 
 ## Upload your JsResolver on IPFS
 
@@ -169,7 +228,7 @@ The uploader will output your JsResolver IPFS CID, that you can use to create yo
 ```
 
 
-## Create your JsResolver task:
+## Create your JsResolver task
 Use the `ops-sdk` to easily create a new task:
 ```typescript
 const { taskId, tx } = await opsSdk.createTask({
@@ -187,7 +246,7 @@ const { taskId, tx } = await opsSdk.createTask({
 ```
 
 Test it with our sample task creation script:
-`yarn create-task`
+`yarn create-task:oracle`
 
 ```
 Deploying JsResolver on IPFS...
@@ -197,6 +256,43 @@ Creating automate task...
 Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
 > https://beta.app.gelato.network/task/0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325?chainId=5
 ```
+
+## More examples
+
+### Coingecko oracle
+
+Fetch price data from Coingecko API to update your on-chain Oracle
+
+Source: [`src/resolvers/oracle/index.ts`](./src/resolvers/oracle/index.ts)
+
+Run:
+```
+npx js-resolver test src/resolvers/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+```
+
+Create task: 
+```
+yarn create-task:oracle
+```
+
+
+### Event listener
+
+Listen to smart contract events and use storage context to maintain your execution state.
+
+Source: [`src/resolvers/event-listener/index.ts`](./src/resolvers/event-listener/index.ts)
+
+Run:
+```
+npx js-resolver test src/resolvers/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+```
+
+Create task: 
+```
+yarn create-task:event
+```
+
+
 
 
 
