@@ -1,7 +1,7 @@
 import {
-  JsResolverSdk,
-  JsResolverContext,
-} from "@gelatonetwork/js-resolver-sdk";
+  Web3Function,
+  Web3FunctionContext,
+} from "@gelatonetwork/web3-functions-sdk";
 import { Contract } from "ethers";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
@@ -10,7 +10,7 @@ const ORACLE_ABI = [
   "function updatePrice(uint256)",
 ];
 
-JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+Web3Function.onChecker(async (context: Web3FunctionContext) => {
   const { userArgs, gelatoArgs, provider } = context;
 
   // Retrieve Last oracle update time

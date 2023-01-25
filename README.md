@@ -1,16 +1,15 @@
-# JsResolver template  <!-- omit in toc -->
-Start building you JsResolvers to Automate on Gelato Network
+# Web3 Functions template  <!-- omit in toc -->
+Start building your Web3 Functions to Automate on Gelato Network
 <br /><br />
 
-
-Example task automation using Gelato Ops SDK:
 - [Project Setup](#project-setup)
-- [Write a Js Resolver](#write-a-js-resolver)
-- [Test your resolver](#test-your-resolver)
+- [Write a Web3 Function](#write-a-web3-function)
+- [Test your web3 function](#test-your-web3-function)
 - [Use User arguments](#use-user-arguments)
 - [Use State / Storage](#use-state--storage)
-- [Upload your JsResolver on IPFS](#upload-your-jsresolver-on-ipfs)
-- [Create your JsResolver task](#create-your-jsresolver-task)
+- [Use user secrets](#use-user-secrets)
+- [Upload your Web3Function on IPFS](#upload-your-web3function-on-ipfs)
+- [Create your Web3Function task](#create-your-web3function-task)
 - [More examples](#more-examples)
   - [Coingecko oracle](#coingecko-oracle)
   - [Event listener](#event-listener)
@@ -34,13 +33,13 @@ yarn install
   ```
 
 
-## Write a Js Resolver
+## Write a Web3 Function
 
-- Create a new file in `src/resolvers`
-- Register your resolver main function using `JsResolverSdk.onChecker`
+- Create a new file in `src/web3Functions`
+- Register your main function using `Web3Function.onRun`
 - Example:
 ```typescript
-import { JsResolverSdk, JsResolverContext } from "@gelatonetwork/js-resolver-sdk";
+import { Web3Function, Web3FunctionContext } from "@gelatonetwork/web3-functions-sdk";
 import { Contract, ethers } from "ethers";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
@@ -49,7 +48,7 @@ const ORACLE_ABI = [
   "function updatePrice(uint256)",
 ];
 
-JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+Web3Function.onRun(async (context: Web3FunctionContext) => {
   const { userArgs, gelatoArgs, provider } = context;
 
   // Retrieve Last oracle update time
@@ -84,49 +83,49 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
   };
 });
 ```
-- create your resolver `schema.json` to specify your runtime configuration:
+- create your function `schema.json` to specify your runtime configuration:
 ```json
 {
-  "jsResolverVersion": "1.0.0",
+  "web3FunctionVersion": "1.0.0",
   "runtime": "js-1.0",
   "memory": 128, 
-  "timeout": 60,
+  "timeout": 30,
   "userArgs": {}
 }
 ```
 
 
-## Test your resolver
+## Test your web3 function
 
-- Use `npx js-resolver test FILENAME` command to test your resolver
+- Use `npx web3-function test FILENAME` command to test your function
 
 - Options:
-  - `--show-logs` Show internal Resolver logs
+  - `--show-logs` Show internal Web3 Function logs
   - `--debug` Show Runtime debug messages
-  - `--chain-id=[number]` Specify the chainId to be used for your Resolver (default: `5`)
-  - `--user-args=[key]:[value]` Set your Resolver user args
+  - `--chain-id=[number]` Specify the chainId to be used for your Web3 Function (default: `5`)
+  - `--user-args=[key]:[value]` Set your Web3 Function user args
 
-- Example: `npx js-resolver test src/resolvers/oracle/index.ts --show-logs`
+- Example: `npx web3-function test src/web3Functions/oracle/index.ts --show-logs`
 - Output:
   ```
-  JsResolver Build result:
-  ✓ File: ./.tmp/resolver.cjs
+  Web3Function Build result:
+  ✓ File: ./.tmp/index.js
   ✓ File size: 1.70mb
   ✓ Build time: 109.93ms
 
-  JsResolver running logs:
+  Web3Function running logs:
   > ChainId: 5
   > Last oracle update: 1665512172
   > Next oracle update: 1665512472
   > Updating price: 1586
 
-  JsResolver Result:
+  Web3Function Result:
   ✓ Return value: {
     canExec: true,
     callData: '0x8d6cc56d0000000000000000000000000000000000000000000000000000000000000632'
   }
 
-  JsResolver Runtime stats:
+  Web3Function Runtime stats:
   ✓ Duration: 5.41s
   ✓ Memory: 57.77mb
   ```
@@ -135,10 +134,10 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
 1. Declare your expected `userArgs` in you schema, accepted types are 'string', 'string[]', 'number', 'number[]', 'boolean', 'boolean[]':
 ```json
 {
-  "jsResolverVersion": "1.0.0",
+  "web3FunctionVersion": "1.0.0",
   "runtime": "js-1.0",
   "memory": 128, 
-  "timeout": 60,
+  "timeout": 30,
   "userArgs": {
     "currency": "string",
     "oracle": "string"
@@ -146,9 +145,9 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
 }
 ```
 
-2. Access your `userArgs` from the JsResolver context:
+2. Access your `userArgs` from the Web3Function context:
 ```typescript
-JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+Web3Function.onChecker(async (context: Web3FunctionContext) => {
   const { userArgs, gelatoArgs, secrets } = context;
 
   // User args:
@@ -158,9 +157,9 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
 });
 ```
 
-3. Pass `user-args` to the CLI to test your resolver:
+3. Pass `user-args` to the CLI to test your web3 function:
 ```
-npx js-resolver test src/resolvers/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+npx web3-function test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
 ```
 
 To pass array argument (eg `string[]`), you can use:
@@ -170,18 +169,18 @@ To pass array argument (eg `string[]`), you can use:
 
 ## Use State / Storage
 
-JsResolvers are stateless scripts, that will run in a new & empty memory context on every execution.
-If you need to manage some state variable, we provide a simple key/value store that you can access from your resolver `context`.
+Web3Functions are stateless scripts, that will run in a new & empty memory context on every execution.
+If you need to manage some state variable, we provide a simple key/value store that you can access from your web3 function `context`.
 
 See the above example to read & update values from your storage:
 
 ```typescript
 import {
-  JsResolverSdk,
-  JsResolverContext,
-} from "@gelatonetwork/js-resolver-sdk";
+  Web3Function,
+  Web3FunctionContext,
+} from "@gelatonetwork/web3-functions-sdk";
 
-JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+Web3Function.onChecker(async (context: Web3FunctionContext) => {
   const { storage, provider } = context;
 
   // Use storage to retrieve previous state (stored values are always string)
@@ -205,12 +204,12 @@ JsResolverSdk.onChecker(async (context: JsResolverContext) => {
 
 Test storage execution:
 ```
-npx js-resolver test RESOLVER_FILE
+npx web3-function test WEB3_FUNCTION_FILE
 ```
 
 You will see your updated key/values:
 ```
-JsResolver Storage updated:
+Web3Function Storage updated:
  ✓ lastBlockNumber: '8321923'
 ```
 
@@ -221,7 +220,7 @@ JsResolver Storage updated:
 SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
 ```
 
-2. Access your secrets from the JsResolver context: 
+2. Access your secrets from the Web3Function context: 
 ```typescript
   // Get api from secrets
   const coingeckoApi = await context.secrets.get("COINGECKO_API");
@@ -236,30 +235,30 @@ SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
 5. To delete secrets, use `yarn delete-secrets SECRET_KEY SECRET_KEY2`
 
 
-## Upload your JsResolver on IPFS
+## Upload your Web3Function on IPFS
 
-Use `npx js-resolver upload FILENAME` command to upload your resolver.
+Use `npx web3-function upload FILENAME` command to upload your web3 function.
 Example:
 ```
-npx js-resolver upload src/resolvers/oracle/index.ts
+npx web3-function upload src/web3Functions/oracle/index.ts
 ```
 
-The uploader will output your JsResolver IPFS CID, that you can use to create your task:
+The uploader will output your Web3Function IPFS CID, that you can use to create your task:
 ```
- ✓ JsResolver uploaded to ipfs. CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
+ ✓ Web3Function uploaded to ipfs. CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
 ```
 
 
-## Create your JsResolver task
+## Create your Web3Function task
 Use the `ops-sdk` to easily create a new task:
 ```typescript
 const { taskId, tx } = await opsSdk.createTask({
-    name: "JsResolver - ETH Oracle",
+    name: "Web3Function - ETH Oracle",
     execAddress: oracleAddress,
     execSelector: oracleInterface.getSighash("updatePrice"),
     dedicatedMsgSender: true,
-    jsResolverHash: cid, // Pass your js resolver IPFS CID
-    jsResolverArgs: { // Set your JsResolver arguments
+    web3FunctionHash: cid, // Pass your js web3 function IPFS CID
+    web3FunctionArgs: { // Set your Web3Function arguments
       oracle: oracleAddress,
       currency: "ethereum",
     },
@@ -271,8 +270,8 @@ Test it with our sample task creation script:
 `yarn create-task:oracle`
 
 ```
-Deploying JsResolver on IPFS...
-JsResolver IPFS CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
+Deploying Web3Function on IPFS...
+Web3Function IPFS CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
 
 Creating automate task...
 Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
@@ -285,11 +284,11 @@ Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf34
 
 Fetch price data from Coingecko API to update your on-chain Oracle
 
-Source: [`src/resolvers/oracle/index.ts`](./src/resolvers/oracle/index.ts)
+Source: [`src/web3Functions/oracle/index.ts`](./src/web3Functions/oracle/index.ts)
 
 Run:
 ```
-npx js-resolver test src/resolvers/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+npx web3-function test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
 ```
 
 Create task: 
@@ -302,11 +301,11 @@ yarn create-task:oracle
 
 Listen to smart contract events and use storage context to maintain your execution state.
 
-Source: [`src/resolvers/event-listener/index.ts`](./src/resolvers/event-listener/index.ts)
+Source: [`src/web3Functions/event-listener/index.ts`](./src/web3Functions/event-listener/index.ts)
 
 Run:
 ```
-npx js-resolver test src/resolvers/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+npx web3-function test src/web3Functions/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
 ```
 
 Create task: 

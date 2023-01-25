@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
 import { GelatoOpsSDK } from "@gelatonetwork/ops-sdk";
-import { JsResolverBuilder } from "@gelatonetwork/js-resolver-sdk/builder";
+import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -21,22 +21,22 @@ const main = async () => {
   const wallet = new ethers.Wallet(pk as string, provider);
   const opsSdk = new GelatoOpsSDK(chainId, wallet);
 
-  // Deploy JsResolver on IPFS
-  console.log("Deploying JsResolver on IPFS...");
-  const jsResolver = "./src/resolvers/event-listener/index.ts";
-  const cid = await JsResolverBuilder.deploy(jsResolver);
-  console.log(`JsResolver IPFS CID: ${cid}`);
+  // Deploy Web3Function on IPFS
+  console.log("Deploying Web3Function on IPFS...");
+  const web3Function = "./src/web3Functions/event-listener/index.ts";
+  const cid = await Web3FunctionBuilder.deploy(web3Function);
+  console.log(`Web3Function IPFS CID: ${cid}`);
 
   // Create task using ops-sdk
   console.log("Creating automate task...");
   const counterInterface = new ethers.utils.Interface(counterAbi);
   const { taskId, tx } = await opsSdk.createTask({
-    name: "JsResolver - Event Counter",
+    name: "Web3Function - Event Counter",
     execAddress: counterAddress,
     execSelector: counterInterface.getSighash("increaseCount"),
     dedicatedMsgSender: true,
-    jsResolverHash: cid,
-    jsResolverArgs: {
+    web3FunctionHash: cid,
+    web3FunctionArgs: {
       oracle: "0x6a3c82330164822A8a39C7C0224D20DB35DD030a",
       counter: "0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F",
     },

@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { JsResolver } from "@gelatonetwork/ops-sdk";
+import { Web3Function } from "@gelatonetwork/ops-sdk";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -16,10 +16,10 @@ const main = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
   const wallet = new ethers.Wallet(pk as string, provider);
-  const jsResolverSdk = new JsResolver(chainId, wallet);
+  const Web3Function = new Web3Function(chainId, wallet);
 
   // Get updated list of secrets
-  const secretsList = await jsResolverSdk.secrets.list();
+  const secretsList = await Web3Function.secrets.list();
   console.log(`Secrets list: `);
   console.dir(secretsList);
 };
