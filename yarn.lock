@@ -491,10 +491,10 @@
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.2.0.tgz#d9756e71514baeab927b6d6492fe7b874fa5de5b"
-  integrity sha512-2s0JRJ8dKOiHcvZY3U+KcemBlw35Nl3tOlupsk581rfR/RrJt4KJLo2U6+r+XnP24wg4nlNokaZYY9vQHyQ1BQ==
+"@gelatonetwork/web3-functions-sdk@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.2.1.tgz#9ff5b39d9373b03b5fc4b51c2688f49633e00418"
+  integrity sha512-M70ircCxSgytqZ5sZJl6NMnJVva95mZT3OelC4RP637uccig0DgshoeL2dxq/3nGEO+l8wsALL2Hdbh7ikE2Og==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
