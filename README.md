@@ -8,7 +8,7 @@ Start building your Web3 Functions to Automate on Gelato Network
 - [Use User arguments](#use-user-arguments)
 - [Use State / Storage](#use-state--storage)
 - [Use user secrets](#use-user-secrets)
-- [Upload your Web3Function on IPFS](#upload-your-web3function-on-ipfs)
+- [Deploy your Web3Function on IPFS](#deploy-your-web3function-on-ipfs)
 - [Create your Web3Function task](#create-your-web3function-task)
 - [More examples](#more-examples)
   - [Coingecko oracle](#coingecko-oracle)
@@ -238,16 +238,16 @@ SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
 
   
 
-## Upload your Web3Function on IPFS
+## Deploy your Web3Function on IPFS
 
-Use `npx web3-function upload FILENAME` command to upload your web3 function.
+Use `npx web3-function deploy FILENAME` command to upload your web3 function.
 
 Example:<br/>
-`npx web3-function upload src/web3Functions/oracle/index.ts`
+`npx web3-function deploy src/web3Functions/oracle/index.ts`
 
 The uploader will output your Web3Function IPFS CID, that you can use to create your task:
 ```
- ✓ Web3Function uploaded to ipfs. CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
+ ✓ Web3Function deployed to ipfs. CID: QmNf64hJsLiC57hnmCFTtFNZSWk6pTG6WfsAaL2R4WnFxF
 ```
 
 
@@ -273,7 +273,7 @@ Test it with our sample task creation script:<br/>
 
 ```
 Deploying Web3Function on IPFS...
-Web3Function IPFS CID: QmUavazADkj9WL9uVJ7eYkoSybhBSsitEsWFNfVojMYJSk
+Web3Function IPFS CID: QmNf64hJsLiC57hnmCFTtFNZSWk6pTG6WfsAaL2R4WnFxF
 
 Creating automate task...
 Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
