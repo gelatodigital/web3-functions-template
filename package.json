@@ -9,7 +9,11 @@
     "format:check": "prettier --check '*/**/*.{js,json,md,ts}'",
     "lint": "eslint --cache .",
     "create-task:event": "ts-node src/scripts/create-task-event-listener.ts",
-    "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts"
+    "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts",
+    "create-task:secrets": "ts-node src/scripts/create-task-with-secrets.ts",
+    "set-secrets": "ts-node -e 'import setSecrets from \"./src/scripts/set-secrets\"; setSecrets().then(() => {process.exit();}).catch((err) => {console.error(\"Error:\", err.message);process.exit(1);});'",
+    "delete-secrets": "ts-node src/scripts/delete-secrets.ts",
+    "list-secrets": "ts-node src/scripts/list-secrets.ts"
   },
   "keywords": [],
   "author": "",
@@ -27,8 +31,8 @@
     "typescript": "^4.7.0"
   },
   "dependencies": {
-    "@gelatonetwork/js-resolver-sdk": "^0.1.12",
-    "@gelatonetwork/ops-sdk": "^2.0.11-alpha",
+    "@gelatonetwork/js-resolver-sdk": "^0.1.6",
+    "@gelatonetwork/ops-sdk": "^2.0.18-alpha",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "ky": "^0.32.2"

@@ -214,6 +214,28 @@ JsResolver Storage updated:
  ✓ lastBlockNumber: '8321923'
 ```
 
+## Use user secrets
+1. Fill up your secrets in `.env` file with `SECRETS_` as prefix.
+
+```
+SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
+```
+
+2. Access your secrets from the JsResolver context: 
+```typescript
+  // Get api from secrets
+  const coingeckoApi = await context.secrets.get("COINGECKO_API");
+  if (!coingeckoApi)
+    return { canExec: false, message: `COINGECKO_API not set in secrets` };
+```
+
+3. Store your secrets by using `yarn set-secrets`. (Variables with the `SECRETS_` prefix in `.env` will be stored.)
+
+4. View complete list of your secrets by using `yarn list-secrets`.
+
+5. To delete secrets, use `yarn delete-secrets SECRET_KEY SECRET_KEY2`
+
+
 ## Upload your JsResolver on IPFS
 
 Use `npx js-resolver upload FILENAME` command to upload your resolver.
