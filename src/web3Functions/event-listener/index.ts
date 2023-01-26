@@ -10,7 +10,7 @@ const MAX_REQUESTS = 100; // limit number of requests on every execution to avoi
 const ORACLE_ABI = ["event PriceUpdated(uint256 indexed time, uint256 price)"];
 const COUNTER_ABI = ["function increaseCount(uint256)"];
 
-Web3Function.onChecker(async (context: Web3FunctionContext) => {
+Web3Function.onRun(async (context: Web3FunctionContext) => {
   const { userArgs, storage, provider } = context;
 
   // Create oracle & counter contract

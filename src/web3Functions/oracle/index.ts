@@ -10,7 +10,7 @@ const ORACLE_ABI = [
   "function updatePrice(uint256)",
 ];
 
-Web3Function.onChecker(async (context: Web3FunctionContext) => {
+Web3Function.onRun(async (context: Web3FunctionContext) => {
   const { userArgs, gelatoArgs, provider } = context;
 
   // Retrieve Last oracle update time

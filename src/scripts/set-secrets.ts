@@ -16,7 +16,7 @@ const setSecrets = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
   const wallet = new ethers.Wallet(pk as string, provider);
-  const Web3Function = new Web3Function(chainId, wallet);
+  const web3Function = new Web3Function(chainId, wallet);
 
   let secrets: Secrets = {};
 
@@ -32,10 +32,10 @@ const setSecrets = async () => {
       };
     });
 
-  await Web3Function.secrets.set(secrets);
+  await web3Function.secrets.set(secrets);
 
   // Get updated list of secrets
-  const secretsList = await Web3Function.secrets.list();
+  const secretsList = await web3Function.secrets.list();
   console.log(`Updated secrets list: `);
   console.dir(secretsList);
 };

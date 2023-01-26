@@ -27,7 +27,7 @@ const main = async () => {
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3Function = "./src/web3Functions/oraclePvtApi/index.ts";
+  const web3Function = "./src/web3Functions/secrets/index.ts";
   const cid = await Web3FunctionBuilder.deploy(web3Function);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
@@ -35,7 +35,7 @@ const main = async () => {
   console.log("Creating automate task...");
   const oracleInterface = new ethers.utils.Interface(oracleAbi);
   const { taskId, tx } = await opsSdk.createTask({
-    name: "Web3Function - Eth Oracle Pvt Api",
+    name: "Web3Function - Eth Oracle Secret Api",
     execAddress: oracleAddress,
     execSelector: oracleInterface.getSighash("updatePrice"),
     dedicatedMsgSender: true,
