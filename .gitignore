@@ -38,5 +38,5 @@ src/logs/
 
 .eslintcache
 
-# resolver builds
+# web3 functions builds
 .tmp

@@ -1,8 +1,8 @@
 import { Log } from "@ethersproject/providers";
 import {
-  JsResolverSdk,
-  JsResolverContext,
-} from "@gelatonetwork/js-resolver-sdk";
+  Web3Function,
+  Web3FunctionContext,
+} from "@gelatonetwork/web3-functions-sdk";
 import { Contract } from "ethers";
 
 const MAX_RANGE = 100; // limit range of events to comply with rpc providers
@@ -10,7 +10,7 @@ const MAX_REQUESTS = 100; // limit number of requests on every execution to avoi
 const ORACLE_ABI = ["event PriceUpdated(uint256 indexed time, uint256 price)"];
 const COUNTER_ABI = ["function increaseCount(uint256)"];
 
-JsResolverSdk.onChecker(async (context: JsResolverContext) => {
+Web3Function.onRun(async (context: Web3FunctionContext) => {
   const { userArgs, storage, provider } = context;
 
   // Create oracle & counter contract
