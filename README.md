@@ -98,7 +98,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 ## Test your web3 function
 
-- Use `npx web3-function test FILENAME` command to test your function
+- Use `npx w3f test FILENAME` command to test your function
 
 - Options:
   - `--show-logs` Show internal Web3 Function logs
@@ -106,7 +106,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   - `--chain-id=[number]` Specify the chainId to be used for your Web3 Function (default: `5`)
   - `--user-args=[key]:[value]` Set your Web3 Function user args
 
-- Example:<br/> `npx web3-function test src/web3Functions/oracle/index.ts --show-logs`
+- Example:<br/> `npx w3f test src/web3Functions/oracle/index.ts --show-logs`
 - Output:
   ```
   Web3Function Build result:
@@ -160,7 +160,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 3. Pass `user-args` to the CLI to test your web3 function:
 ```
-npx web3-function test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+npx w3f test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
 ```
 
 To pass array argument (eg `string[]`), you can use:
@@ -204,7 +204,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 ```
 
 Test storage execution:<br/>
-`npx web3-function test src/web3Functions/storage/index.ts  --show-logs`
+`npx w3f test src/web3Functions/storage/index.ts  --show-logs`
 
 You will see your updated key/values:
 ```
@@ -230,7 +230,7 @@ SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
 3. Store your secrets by using (Variables with the `SECRETS_` prefix in `.env` will be stored):<br/> `yarn set-secrets`
   
 4. Test your resolver using secrets:<br/>
-`npx web3-function test src/web3Functions/secrets/index.ts --show-logs`
+`npx w3f test src/web3Functions/secrets/index.ts --show-logs`
 
 5. View complete list of your secrets by using:<br/> `yarn list-secrets`
 
@@ -240,14 +240,14 @@ SECRETS_COINGECKO_API=https://api.coingecko.com/api/v3
 
 ## Deploy your Web3Function on IPFS
 
-Use `npx web3-function deploy FILENAME` command to upload your web3 function.
+Use `npx w3f deploy FILENAME` command to upload your web3 function.
 
 Example:<br/>
-`npx web3-function deploy src/web3Functions/oracle/index.ts`
+`npx w3f deploy src/web3Functions/oracle/index.ts`
 
 The uploader will output your Web3Function IPFS CID, that you can use to create your task:
 ```
- ✓ Web3Function deployed to ipfs. CID: QmNf64hJsLiC57hnmCFTtFNZSWk6pTG6WfsAaL2R4WnFxF
+ ✓ Web3Function deployed to ipfs. CID: QmRMsRbcrAHC55GL7CEAPL2aHSPWcLsK3TY8cm3wRYGKLS
 ```
 
 
@@ -273,7 +273,7 @@ Test it with our sample task creation script:<br/>
 
 ```
 Deploying Web3Function on IPFS...
-Web3Function IPFS CID: QmNf64hJsLiC57hnmCFTtFNZSWk6pTG6WfsAaL2R4WnFxF
+Web3Function IPFS CID: QmRMsRbcrAHC55GL7CEAPL2aHSPWcLsK3TY8cm3wRYGKLS
 
 Creating automate task...
 Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
@@ -289,7 +289,7 @@ Fetch price data from Coingecko API to update your on-chain Oracle
 Source: [`src/web3Functions/oracle/index.ts`](./src/web3Functions/oracle/index.ts)
 
 Run:<br/>
-`npx web3-function test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3Functions/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
 
 Create task: <br/>
 `yarn create-task:oracle`
@@ -302,7 +302,7 @@ Listen to smart contract events and use storage context to maintain your executi
 Source: [`src/web3Functions/event-listener/index.ts`](./src/web3Functions/event-listener/index.ts)
 
 Run:<br/>
-`npx web3-function test src/web3Functions/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3Functions/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
 
 Create task: <br/>
 `yarn create-task:event`
@@ -314,7 +314,7 @@ Fetch data from a private API to update your on-chain Oracle
 Source: [`src/web3Functions/secrets/index.ts`](./src/web3Functions/secrets/index.ts)
 
 Run:<br/>
-`npx web3-function test src/web3Functions/secrets/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3Functions/secrets/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
 
 Create task: <br/>
 `yarn create-task:secrets`

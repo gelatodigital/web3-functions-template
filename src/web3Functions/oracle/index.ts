@@ -27,7 +27,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   }
 
   // Check if it's ready for a new update
-  const nextUpdateTime = lastUpdated + 300; // 5 min
+  const nextUpdateTime = lastUpdated + 3600; // 1h
   const timestamp = gelatoArgs.blockTime;
   console.log(`Next oracle update: ${nextUpdateTime}`);
   if (timestamp < nextUpdateTime) {

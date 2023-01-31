@@ -481,20 +481,20 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@gelatonetwork/ops-sdk@^2.1.0-alpha":
-  version "2.1.0-alpha"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/ops-sdk/-/ops-sdk-2.1.0-alpha.tgz#76ee17ae9bbbaec3c548d384f20917d06dbcdcf2"
-  integrity sha512-yUBwU1hZVtuFY1ingQp6AAkBIu+WkgSnsscbXuwugkbjN8o7YPt6sqW7RcZSxM1QPGmUGwED4hgx2GaB3rD0cg==
+"@gelatonetwork/ops-sdk@^2.1.1-alpha":
+  version "2.1.1-alpha"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/ops-sdk/-/ops-sdk-2.1.1-alpha.tgz#f7db4844d92a56de156217cc972922d735b5c52d"
+  integrity sha512-1514sX/IY5YMwzTX/GeIACNZmM7l/7TiR0+vGPm75INVcXOLP8LBfziusl8P2Id4mOrfBcfVT+mrbrUX98tQjA==
   dependencies:
     "@msgpack/msgpack" "^2.7.2"
     axios "^1.2.2"
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.2.1.tgz#9ff5b39d9373b03b5fc4b51c2688f49633e00418"
-  integrity sha512-M70ircCxSgytqZ5sZJl6NMnJVva95mZT3OelC4RP637uccig0DgshoeL2dxq/3nGEO+l8wsALL2Hdbh7ikE2Og==
+"@gelatonetwork/web3-functions-sdk@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.3.1.tgz#23ae26b176c9d0f05e7048c5c4a9d11fd37197f3"
+  integrity sha512-xNUTsO9LqeHnfLSsOI0+laCV43THbNzlf2KnzEZiE8YmUyhbpNVIThK81VJcqJRxGCi7xKqpkRuSClJ8ba82Cg==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
