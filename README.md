@@ -14,6 +14,10 @@ Web3 Functions are currently in private Beta and can only be used by whitelisted
 
 ## Table of Content
 
+- [What are Web3 Functions?](#what-are-web3-functions)
+- [Documentation](#documentation)
+- [Private Beta Restriction](#private-beta-restriction)
+- [Table of Content](#table-of-content)
 - [Project Setup](#project-setup)
 - [Write a Web3 Function](#write-a-web3-function)
 - [Test your web3 function](#test-your-web3-function)
@@ -26,7 +30,7 @@ Web3 Functions are currently in private Beta and can only be used by whitelisted
   - [Coingecko oracle](#coingecko-oracle)
   - [Event listener](#event-listener)
   - [Secrets](#secrets)
-  - [Advertising board](#advertising-board)
+  - [Advertising Board](#advertising-board)
 
 
 ## Project Setup
@@ -260,7 +264,11 @@ Example:<br/>
 
 The uploader will output your Web3Function IPFS CID, that you can use to create your task:
 ```
- ✓ Web3Function deployed to ipfs. CID: QmRMsRbcrAHC55GL7CEAPL2aHSPWcLsK3TY8cm3wRYGKLS
+ ✓ Web3Function deployed to ipfs.
+ ✓ CID: QmVfDbGGN6qfPs5ocu2ZuzLdBsXpu7zdfPwh14LwFUHLnc
+
+To create a task that runs your Web3 Function every minute, visit:
+> https://beta.app.gelato.network/new-task?cid=QmVfDbGGN6qfPs5ocu2ZuzLdBsXpu7zdfPwh14LwFUHLnc
 ```
 
 
@@ -286,11 +294,11 @@ Test it with our sample task creation script:<br/>
 
 ```
 Deploying Web3Function on IPFS...
-Web3Function IPFS CID: QmRMsRbcrAHC55GL7CEAPL2aHSPWcLsK3TY8cm3wRYGKLS
+Web3Function IPFS CID: QmVfDbGGN6qfPs5ocu2ZuzLdBsXpu7zdfPwh14LwFUHLnc
 
 Creating automate task...
-Task created, taskId: 0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325 
-> https://beta.app.gelato.network/task/0xedcc73b5cc1e7b3dc79cc899f239193791f6bb16dd2a67be1c0fdf3495533325?chainId=5
+Task created, taskId: 0x8438933eb9c6e4632d984b4db1e7672082d367b900e536f86295b2e23dbcaff3
+> https://beta.app.gelato.network/task/0x8438933eb9c6e4632d984b4db1e7672082d367b900e536f86295b2e23dbcaff3?chainId=5
 ```
 
 ## More examples
