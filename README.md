@@ -1,6 +1,18 @@
-# Web3 Functions template  <!-- omit in toc -->
-Start building your Web3 Functions to Automate on Gelato Network
-<br /><br />
+# Web3 Functions Template  <!-- omit in toc -->
+Use this template to write, test and deploy Web3 Functions.
+
+## What are Web3 Functions? 
+Web3 Functions are decentralized cloud functions that work similarly to AWS Lambda or Google Cloud, just for web3. They enable developers to execute on-chain transactions based on arbitrary off-chain data (APIs / subgraphs, etc) & computation. These functions are written in Typescript, stored on IPFS and run by Gelato. 
+
+## Documentation
+
+You can find the official Web3 Functions documentation [here](https://docs.gelato.network/developer-services/gasless-wallet).
+
+## Private Beta Restriction
+
+Web3 Functions are currently in private Beta and can only be used by whitelisted users. If you would like to be added to the waitlist, please reach out to the team on [Discord](https://discord.com/invite/ApbA39BKyJ) or apply using this [form](https://form.typeform.com/to/RrEiARiI).
+
+## Table of Content
 
 - [Project Setup](#project-setup)
 - [Write a Web3 Function](#write-a-web3-function)
