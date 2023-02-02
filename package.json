@@ -11,6 +11,7 @@
     "create-task:event": "ts-node src/scripts/create-task-event-listener.ts",
     "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts",
     "create-task:secrets": "ts-node src/scripts/create-task-with-secrets.ts",
+    "create-task:ad-board": "ts-node src/scripts/create-task-ad-board.ts",
     "set-secrets": "ts-node -e 'import setSecrets from \"./src/scripts/set-secrets\"; setSecrets().then(() => {process.exit();}).catch((err) => {console.error(\"Error:\", err.message);process.exit(1);});'",
     "delete-secrets": "ts-node src/scripts/delete-secrets.ts",
     "list-secrets": "ts-node src/scripts/list-secrets.ts"
