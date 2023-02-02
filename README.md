@@ -26,6 +26,7 @@ Web3 Functions are currently in private Beta and can only be used by whitelisted
   - [Coingecko oracle](#coingecko-oracle)
   - [Event listener](#event-listener)
   - [Secrets](#secrets)
+  - [Advertising board](#advertising-board)
 
 
 ## Project Setup
@@ -331,3 +332,14 @@ Run:<br/>
 Create task: <br/>
 `yarn create-task:secrets`
 
+### Advertising Board
+
+Fetch a random quote from an API and post it on chain. 
+
+Source: [`src/web3Functions/advertising-board/index.ts`](./src/web3Functions/advertising-board/index.ts)
+
+Run:<br/>
+`npx w3f test src/web3Functions/advertising-board/index.ts`
+
+Create task: <br/>
+`yarn create-task:ad-board`
