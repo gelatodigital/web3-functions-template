@@ -26,7 +26,8 @@ const main = async () => {
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3Function = "./src/web3Functions/advertising-board/index.ts";
+  const web3Function =
+    "./src/web3-functions/examples/advertising-board/index.ts";
   const cid = await Web3FunctionBuilder.deploy(web3Function);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
