@@ -6,7 +6,7 @@ Web3 Functions are decentralized cloud functions that work similarly to AWS Lamb
 
 ## Documentation
 
-You can find the official Web3 Functions documentation [here](https://docs.gelato.network/developer-services/gasless-wallet).
+You can find the official Web3 Functions documentation [here](https://docs.gelato.network/developer-services/web3-functions).
 
 ## Private Beta Restriction
 
