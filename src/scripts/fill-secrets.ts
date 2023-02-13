@@ -6,7 +6,6 @@ export const fillSecrets = async () => {
   let secrets: Secrets = {};
 
   // Fill up secrets with `SECRETS_*` env
-  console.log("Setting secrets...");
   Object.keys(process.env)
     .filter((key) => key.startsWith("SECRETS_"))
     .forEach((key) => {

@@ -115,6 +115,8 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 ## Test your web3 function
 
+### Calling your web3 function
+
 - Use `npx w3f test FILENAME` command to test your function
 
 - Options:
@@ -147,6 +149,28 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   ✓ Duration: 5.41s
   ✓ Memory: 57.77mb
   ```
+
+### Writing unit test for your web3 function
+
+- Define your tests in  `src/test/my-web3-function.test.ts`
+- Use `yarn test` command to run unit test suite.
+
+You can fork a network in your unit test.
+RPC methods of provider can be found in [Foundry's Anvil docs](https://book.getfoundry.sh/reference/anvil/)
+
+Example: [`src/test/advertising-board.test.ts`](./src/test/advertising-board.test.ts)
+
+```ts
+  import { AnvilServer } from "./utils/anvil-server";
+
+  goerliFork = await AnvilServer.fork({
+    forkBlockNumber: 8483100,
+    forkUrl: "https://rpc.ankr.com/eth_goerli",
+  });
+
+  const forkedProvider = goerliFork.provider;
+```
+
 
 ## Use User arguments
 1. Declare your expected `userArgs` in your schema, accepted types are 'string', 'string[]', 'number', 'number[]', 'boolean', 'boolean[]':
