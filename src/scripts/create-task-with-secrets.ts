@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { GelatoOpsSDK } from "@gelatonetwork/ops-sdk";
+import { Web3Function, GelatoOpsSDK } from "@gelatonetwork/ops-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
-import setSecrets from "./set-secrets";
+import { fillSecrets } from "./fill-secrets";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -24,11 +24,12 @@ const main = async () => {
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
   const wallet = new ethers.Wallet(pk as string, provider);
   const opsSdk = new GelatoOpsSDK(chainId, wallet);
+  const web3Function = new Web3Function(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3Function = "./src/web3-functions/examples/secrets/index.ts";
-  const cid = await Web3FunctionBuilder.deploy(web3Function);
+  const web3FunctionPath = "./src/web3-functions/examples/secrets/index.ts";
+  const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
   // Create task using ops-sdk
@@ -51,7 +52,13 @@ const main = async () => {
     `> https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
   );
 
-  await setSecrets();
+  const secrets = await fillSecrets();
+  await web3Function.secrets.set(secrets);
+
+  // Get updated list of secrets
+  const secretsList = await web3Function.secrets.list();
+  console.log(`Updated secrets list: `);
+  console.dir(secretsList);
 };
 
 main()
