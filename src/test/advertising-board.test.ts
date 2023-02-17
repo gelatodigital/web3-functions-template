@@ -75,7 +75,5 @@ describe("Advertising Board Web3 Function test", () => {
     // expect "lastPost" to be updated
     expect(res.storage.state).toEqual("updated");
     expect(res.storage.storage["lastPost"]).toEqual(blockTime.toString());
-
-    res.result = res.result as { canExec: true; callData: string };
   });
 });

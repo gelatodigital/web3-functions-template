@@ -155,9 +155,10 @@ export class AnvilServer {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
-    const providerUrl = `http://localhost:${options.port}`;
-    const anvilProvider = new ethers.providers.JsonRpcProvider(providerUrl);
-
+    const providerUrl = `http://127.0.0.1:${options.port}`;
+    const anvilProvider = new ethers.providers.StaticJsonRpcProvider(
+      providerUrl
+    );
     return new AnvilServer(options, anvil, anvilProvider);
   }
 
