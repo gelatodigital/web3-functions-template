@@ -40,7 +40,12 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
     const toBlock = Math.min(fromBlock + MAX_RANGE, currentBlock);
     console.log(`Fetching log events from blocks ${fromBlock} to ${toBlock}`);
     try {
-      const eventFilter = { oracleAddress, topics, fromBlock, toBlock };
+      const eventFilter = {
+        address: oracleAddress,
+        topics,
+        fromBlock,
+        toBlock,
+      };
       const result = await provider.getLogs(eventFilter);
       logs.push(...result);
       lastBlock = toBlock;
