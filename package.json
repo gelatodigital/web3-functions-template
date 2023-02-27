@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@gelatonetwork/ops-sdk": "^2.2.0-alpha",
-    "@gelatonetwork/web3-functions-sdk": "^0.4.3",
+    "@gelatonetwork/web3-functions-sdk": "^0.4.5",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "ky": "^0.32.2"
