@@ -785,10 +785,10 @@
     command-exists "^1.2.9"
     ts-interface-checker "^0.1.9"
 
-"@gelatonetwork/ops-sdk@^2.2.0-alpha":
-  version "2.2.0-alpha"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/ops-sdk/-/ops-sdk-2.2.0-alpha.tgz#40587da7d95623229c569415b050c2bf0f7550dc"
-  integrity sha512-ZiHRdFQYXx+Rew5OUj4QmD8j1/gVl9KItXXjfZ2DDaNi9/xiHI/RGtYDakc8VtuKREUPIxVI+u8ohKxlyZaJOw==
+"@gelatonetwork/ops-sdk@^2.2.1-alpha":
+  version "2.2.1-alpha"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/ops-sdk/-/ops-sdk-2.2.1-alpha.tgz#bf10505ecbfc51e03baf62dc95c5535ac3b2b80f"
+  integrity sha512-pVVOmMKZWuV9Ie8hYCsByQRClRNS2mcvyBG1sN/njCRg7823AKH02n0Go62A4Vseb9mikzXQedJNk8MvRNCtPg==
   dependencies:
     axios "^1.2.2"
     ethers "^5.5.2"
