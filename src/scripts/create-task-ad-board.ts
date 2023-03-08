@@ -12,7 +12,7 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const adBoardAddress = "0x574ef783FDF805deFF4567393cCaC483F1030Af5";
+const adBoardAddress = "0x28a0A1C63E7E8F0DAe5ad633fe232c12b489d5f0";
 const adBoardAbi = [
   "function postMessage(string)",
   "function viewMessage(address)",
