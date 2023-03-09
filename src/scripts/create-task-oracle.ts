@@ -12,7 +12,7 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const oracleAddress = "0x6a3c82330164822A8a39C7C0224D20DB35DD030a";
+const oracleAddress = "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da";
 const oracleAbi = [
   "function lastUpdated() external view returns(uint256)",
   "function updatePrice(uint256)",
@@ -40,7 +40,7 @@ const main = async () => {
     dedicatedMsgSender: true,
     web3FunctionHash: cid,
     web3FunctionArgs: {
-      oracle: "0x6a3c82330164822A8a39C7C0224D20DB35DD030a",
+      oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
       currency: "ethereum",
     },
   });

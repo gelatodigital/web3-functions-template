@@ -70,7 +70,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   const { userArgs, gelatoArgs, provider } = context;
 
   // Retrieve Last oracle update time
-  const oracleAddress = "0x6a3c82330164822A8a39C7C0224D20DB35DD030a";
+  const oracleAddress = "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da";
   const oracle = new Contract(oracleAddress, ORACLE_ABI, provider);
   const lastUpdated = parseInt(await oracle.lastUpdated());
   console.log(`Last oracle update: ${lastUpdated}`);
@@ -201,7 +201,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 3. Pass `user-args` to the CLI to test your web3 function:
 ```
-npx w3f test src/web3-functions/examples/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a
+npx w3f test src/web3-functions/examples/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da
 ```
 
 To pass array argument (eg `string[]`), you can use:
@@ -334,7 +334,7 @@ Fetch price data from Coingecko API to update your on-chain Oracle
 Source: [`src/web3-functions/examples/oracle/index.ts`](./src/web3-functions/examples/oracle/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/examples/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3-functions/examples/oracle/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da`
 
 Create task: <br/>
 `yarn create-task:oracle`
@@ -347,7 +347,7 @@ Listen to smart contract events and use storage context to maintain your executi
 Source: [`src/web3-functions/examples/event-listener/index.ts`](./src/web3-functions/examples/event-listener/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/examples/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3-functions/examples/event-listener/index.ts --show-logs --user-args=counter:0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F --user-args=oracle:0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da`
 
 Create task: <br/>
 `yarn create-task:event`
@@ -359,7 +359,7 @@ Fetch data from a private API to update your on-chain Oracle
 Source: [`src/web3-functions/examples/secrets/index.ts`](./src/web3-functions/examples/secrets/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/examples/secrets/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x6a3c82330164822A8a39C7C0224D20DB35DD030a`
+`npx w3f test src/web3-functions/examples/secrets/index.ts --show-logs --user-args=currency:ethereum --user-args=oracle:0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da`
 
 Create task: <br/>
 `yarn create-task:secrets`

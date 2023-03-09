@@ -15,7 +15,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
   // Retrieve Last oracle update time
   const oracleAddress =
-    (userArgs.oracle as string) ?? "0x6a3c82330164822A8a39C7C0224D20DB35DD030a";
+    (userArgs.oracle as string) ?? "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da";
   let lastUpdated;
   let oracle;
   try {

@@ -15,7 +15,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
   // Create oracle & counter contract
   const oracleAddress =
-    (userArgs.oracle as string) ?? "0x6a3c82330164822A8a39C7C0224D20DB35DD030a";
+    (userArgs.oracle as string) ?? "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da";
   const counterAddress =
     (userArgs.counter as string) ??
     "0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F";
