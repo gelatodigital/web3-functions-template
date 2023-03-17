@@ -39,7 +39,7 @@
     "typescript": "^4.7.0"
   },
   "dependencies": {
-    "@gelatonetwork/ops-sdk": "^2.2.1-alpha",
+    "@gelatonetwork/automate-sdk": "^2.3.0-beta",
     "@gelatonetwork/web3-functions-sdk": "^0.4.5",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
