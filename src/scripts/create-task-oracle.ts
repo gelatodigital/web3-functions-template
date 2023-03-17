@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { GelatoOpsSDK } from "@gelatonetwork/ops-sdk";
+import { AutomateSDK } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
 dotenv.config();
 
@@ -22,7 +22,7 @@ const main = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
   const wallet = new ethers.Wallet(pk as string, provider);
-  const opsSdk = new GelatoOpsSDK(chainId, wallet);
+  const automate = new AutomateSDK(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
@@ -30,10 +30,10 @@ const main = async () => {
   const cid = await Web3FunctionBuilder.deploy(web3Function);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
-  // Create task using ops-sdk
+  // Create task using automate-sdk
   console.log("Creating automate task...");
   const oracleInterface = new ethers.utils.Interface(oracleAbi);
-  const { taskId, tx } = await opsSdk.createTask({
+  const { taskId, tx } = await automate.createTask({
     name: "Web3Function - Eth Oracle",
     execAddress: oracleAddress,
     execSelector: oracleInterface.getSighash("updatePrice"),

@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { Secrets } from "@gelatonetwork/ops-sdk";
+import { Secrets } from "@gelatonetwork/automate-sdk";
 dotenv.config();
 
 export const fillSecrets = async () => {

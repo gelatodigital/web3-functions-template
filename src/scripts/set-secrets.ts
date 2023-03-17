@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { Web3Function } from "@gelatonetwork/ops-sdk";
+import { Web3Function } from "@gelatonetwork/automate-sdk";
 import { fillSecrets } from "./fill-secrets";
 dotenv.config();
 

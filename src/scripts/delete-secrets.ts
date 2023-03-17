@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { Web3Function } from "@gelatonetwork/ops-sdk";
+import { Web3Function } from "@gelatonetwork/automate-sdk";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");

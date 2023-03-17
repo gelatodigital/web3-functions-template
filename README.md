@@ -297,9 +297,9 @@ To create a task that runs your Web3 Function every minute, visit:
 
 
 ## Create your Web3Function task
-Use the `ops-sdk` to easily create a new task (make sure you have your private_key in .env):
+Use the `automate-sdk` to easily create a new task (make sure you have your private_key in .env):
 ```typescript
-const { taskId, tx } = await opsSdk.createTask({
+const { taskId, tx } = await automate.createTask({
     name: "Web3Function - ETH Oracle",
     execAddress: oracleAddress,
     execSelector: oracleInterface.getSighash("updatePrice"),
