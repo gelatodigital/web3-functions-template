@@ -794,10 +794,10 @@
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^0.4.5":
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.4.5.tgz#b782320122ef220d4da7af33f7e63275e92d80ff"
-  integrity sha512-mzA/IFcxSELf8F+Z1oCNn5QkUK9iYv31YJOH6MFEfMIDHP/vmNKRf5Hy4d/okMNcjMOSYNwQcW5OfV5UoFKpuQ==
+"@gelatonetwork/web3-functions-sdk@^0.4.8":
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.4.8.tgz#94d0dcf2368c7f9bb94cb5c8bfa3ed2b96d6a6c7"
+  integrity sha512-QXZ61ldrLfjtwusvXllVfPB8c5y9e3dHGq5jKWxoBUP4dDa3/Rrcxf4B8WuzBSb0d41Ugmjby1woFk6cehI1Sg==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
@@ -815,6 +815,7 @@
     ky "^0.32.2"
     object-hash "^3.0.0"
     pidusage "^3.0.1"
+    signal-exit "^3.0.7"
     tar "^6.1.12"
 
 "@humanwhocodes/config-array@^0.11.6":
