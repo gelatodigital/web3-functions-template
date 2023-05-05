@@ -13,8 +13,6 @@
     "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts",
     "create-task:secrets": "ts-node src/scripts/create-task-with-secrets.ts",
     "create-task:ad-board": "ts-node src/scripts/create-task-ad-board.ts",
-    "set-secrets": "ts-node src/scripts/set-secrets.ts",
-    "delete-secrets": "ts-node src/scripts/delete-secrets.ts",
     "list-secrets": "ts-node src/scripts/list-secrets.ts"
   },
   "keywords": [],
@@ -39,8 +37,8 @@
     "typescript": "^4.7.0"
   },
   "dependencies": {
-    "@gelatonetwork/automate-sdk": "^2.3.0-beta",
-    "@gelatonetwork/web3-functions-sdk": "^0.4.5",
+    "@gelatonetwork/automate-sdk": "^2.6.0-betatest",
+    "@gelatonetwork/web3-functions-sdk": "^2.0.2-betatest",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "ky": "^0.32.2"

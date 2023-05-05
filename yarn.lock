@@ -785,19 +785,19 @@
     command-exists "^1.2.9"
     ts-interface-checker "^0.1.9"
 
-"@gelatonetwork/automate-sdk@^2.3.0-beta":
-  version "2.3.0-beta"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.3.0-beta.tgz#bb8cdc916ff9126e11b8f9c9a7a4a85322f6ffb0"
-  integrity sha512-g2Bh8wKCoKb92BrahiJJ5IfOMfPx6PgUOD/9VDofnY1HfD1IHKhmmJdDr+8f9qCPuOO0UVsgMiOjrUgvsWH5Wg==
+"@gelatonetwork/automate-sdk@^2.6.0-betatest":
+  version "2.6.0-betatest"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.6.0-betatest.tgz#e7d678fbf69937910c3681d9e0020dab4648a978"
+  integrity sha512-e20/qTXWGmyAPA/8puJVLvvD83u31blmO9XQuDQiS8wUxTSeoOpqI4TORWOmpa49QB4Kk2el+Jn5cWgwF1lgGw==
   dependencies:
     axios "^1.2.2"
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^0.4.5":
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-0.4.5.tgz#b782320122ef220d4da7af33f7e63275e92d80ff"
-  integrity sha512-mzA/IFcxSELf8F+Z1oCNn5QkUK9iYv31YJOH6MFEfMIDHP/vmNKRf5Hy4d/okMNcjMOSYNwQcW5OfV5UoFKpuQ==
+"@gelatonetwork/web3-functions-sdk@^2.0.2-betatest":
+  version "2.0.2-betatest"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.0.2-betatest.tgz#ac0ade3f98e0fb8cc2a19ff0266ed4c46ab47381"
+  integrity sha512-eXENDJk9OtcV/1rKR8wzZWHPc/3GMt10uvkp8mkGEu0rnUrn7e7at6WAk1ySUL2Ug/VPlipti28sLbhCEG6LUQ==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
@@ -815,6 +815,8 @@
     ky "^0.32.2"
     object-hash "^3.0.0"
     pidusage "^3.0.1"
+    semver "^7.5.0"
+    signal-exit "^3.0.7"
     tar "^6.1.12"
 
 "@humanwhocodes/config-array@^0.11.6":
@@ -3867,6 +3869,13 @@ semver@^6.0.0, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
+semver@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.0.tgz#ed8c5dc8efb6c629c88b23d41dc9bf40c1d96cd0"
+  integrity sha512-+XC0AD/R7Q2mPSRuy2Id0+CGTZ98+8f+KvwirxOKIEyid+XSx6HbC63p+O4IndTHuX5Z+JxQ0TghCkO5Cg/2HA==
+  dependencies:
+    lru-cache "^6.0.0"
 
 send@0.18.0:
   version "0.18.0"
