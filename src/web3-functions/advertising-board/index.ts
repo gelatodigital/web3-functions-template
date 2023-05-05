@@ -11,13 +11,18 @@ const AD_BOARD_ABI = [
 ];
 
 Web3Function.onRun(async (context: Web3FunctionContext) => {
-  const { storage, gelatoArgs } = context;
+  const { userArgs, storage, multiChainProvider } = context;
+
+  const provider = multiChainProvider.default();
+  const adBoardAddress =
+    (userArgs.adBoard as string) ??
+    "0x28a0A1C63E7E8F0DAe5ad633fe232c12b489d5f0";
 
   const lastPost = Number(await storage.get("lastPost")) ?? 0;
   const adBoardInterface = new utils.Interface(AD_BOARD_ABI);
 
   const nextPostTime = lastPost + 3600; // 1h
-  const timestamp = gelatoArgs.blockTime;
+  const timestamp = (await provider.getBlock("latest")).timestamp;
 
   if (timestamp < nextPostTime) {
     return { canExec: false, message: `Time not elapsed` };
@@ -41,6 +46,11 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
   return {
     canExec: true,
-    callData: adBoardInterface.encodeFunctionData("postMessage", [message]),
+    callData: [
+      {
+        to: adBoardAddress,
+        data: adBoardInterface.encodeFunctionData("postMessage", [message]),
+      },
+    ],
   };
 });

@@ -11,7 +11,9 @@ const ORACLE_ABI = ["event PriceUpdated(uint256 indexed time, uint256 price)"];
 const COUNTER_ABI = ["function increaseCount(uint256)"];
 
 Web3Function.onRun(async (context: Web3FunctionContext) => {
-  const { userArgs, storage, provider } = context;
+  const { userArgs, storage, multiChainProvider } = context;
+
+  const provider = multiChainProvider.default();
 
   // Create oracle & counter contract
   const oracleAddress =
@@ -80,8 +82,13 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   // Increase number of events matched on our OracleCounter contract
   return {
     canExec: true,
-    callData: counter.interface.encodeFunctionData("increaseCount", [
-      nbNewEvents,
-    ]),
+    callData: [
+      {
+        to: counterAddress,
+        data: counter.interface.encodeFunctionData("increaseCount", [
+          nbNewEvents,
+        ]),
+      },
+    ],
   };
 });
