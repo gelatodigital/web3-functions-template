@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { AutomateSDK } from "@gelatonetwork/automate-sdk";
+import { AutomateSDK, Web3Function } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
+import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -12,8 +13,8 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const counterAddress = "0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F";
-const counterAbi = ["function increaseCount(uint256)"];
+const w3fRootDir = "src/web3-functions";
+const w3fName = "event-listener";
 
 const main = async () => {
   // Instanciate provider & signer
@@ -29,12 +30,8 @@ const main = async () => {
 
   // Create task using automate-sdk
   console.log("Creating automate task...");
-  const counterInterface = new ethers.utils.Interface(counterAbi);
-  const { taskId, tx } = await automate.createTask({
+  const { taskId, tx } = await automate.createBatchExecTask({
     name: "Web3Function - Event Counter",
-    execAddress: counterAddress,
-    execSelector: counterInterface.getSighash("increaseCount"),
-    dedicatedMsgSender: true,
     web3FunctionHash: cid,
     web3FunctionArgs: {
       oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
@@ -46,6 +43,14 @@ const main = async () => {
   console.log(
     `> https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
   );
+
+  // Set secrets
+  const { secrets } = Web3FunctionLoader.load(w3fName, w3fRootDir);
+  const web3FunctionHelper = new Web3Function(chainId, wallet);
+  if (Object.keys(secrets).length > 0) {
+    await web3FunctionHelper.secrets.set(secrets, taskId);
+    console.log("Secrets set");
+  }
 };
 
 main()

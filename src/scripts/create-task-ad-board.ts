@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { AutomateSDK } from "@gelatonetwork/automate-sdk";
+import { AutomateSDK, Web3Function } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
+import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -12,11 +13,8 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const adBoardAddress = "0x28a0A1C63E7E8F0DAe5ad633fe232c12b489d5f0";
-const adBoardAbi = [
-  "function postMessage(string)",
-  "function viewMessage(address)",
-];
+const w3fRootDir = "src/web3-functions";
+const w3fName = "advertising-board";
 
 const main = async () => {
   // Instanciate provider & signer
@@ -33,12 +31,8 @@ const main = async () => {
 
   // Create task using automate-sdk
   console.log("Creating automate task...");
-  const adBoardInterface = new ethers.utils.Interface(adBoardAbi);
-  const { taskId, tx } = await automate.createTask({
+  const { taskId, tx } = await automate.createBatchExecTask({
     name: "Web3Function - Ad Board",
-    execAddress: adBoardAddress,
-    execSelector: adBoardInterface.getSighash("postMessage"),
-    dedicatedMsgSender: true,
     web3FunctionHash: cid,
     web3FunctionArgs: {},
   });
@@ -47,6 +41,14 @@ const main = async () => {
   console.log(
     `> https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
   );
+
+  // Set secrets
+  const { secrets } = Web3FunctionLoader.load(w3fName, w3fRootDir);
+  const web3FunctionHelper = new Web3Function(chainId, wallet);
+  if (Object.keys(secrets).length > 0) {
+    await web3FunctionHelper.secrets.set(secrets, taskId);
+    console.log("Secrets set");
+  }
 };
 
 main()
