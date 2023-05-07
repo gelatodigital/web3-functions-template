@@ -12,8 +12,7 @@
     "create-task:event": "ts-node src/scripts/create-task-event-listener.ts",
     "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts",
     "create-task:secrets": "ts-node src/scripts/create-task-with-secrets.ts",
-    "create-task:ad-board": "ts-node src/scripts/create-task-ad-board.ts",
-    "list-secrets": "ts-node src/scripts/list-secrets.ts"
+    "create-task:ad-board": "ts-node src/scripts/create-task-ad-board.ts"
   },
   "keywords": [],
   "author": "",

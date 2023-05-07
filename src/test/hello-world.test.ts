@@ -1,11 +1,12 @@
+import path from "path";
 import { Web3FunctionContextData } from "@gelatonetwork/web3-functions-sdk";
 import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 import { runWeb3Function } from "./utils";
 import { ethers } from "ethers";
 
 const w3fName = "hello-world";
-const w3fRootDir = "src/web3-functions";
-const w3fPath = `${w3fRootDir}/${w3fName}/index.ts`;
+const w3fRootDir = path.join("src", "web3-functions");
+const w3fPath = path.join(w3fRootDir, w3fName, "index.ts");
 
 describe("My Web3 Function test", () => {
   let context: Web3FunctionContextData;

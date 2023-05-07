@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
 import { ethers } from "ethers";
-import { AutomateSDK, Web3Function } from "@gelatonetwork/automate-sdk";
+import { AutomateSDK } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
-import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -13,8 +12,6 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const w3fRootDir = "src/web3-functions";
-const w3fName = "event-listener";
 
 const main = async () => {
   // Instanciate provider & signer
@@ -43,14 +40,6 @@ const main = async () => {
   console.log(
     `> https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
   );
-
-  // Set secrets
-  const { secrets } = Web3FunctionLoader.load(w3fName, w3fRootDir);
-  const web3FunctionHelper = new Web3Function(chainId, wallet);
-  if (Object.keys(secrets).length > 0) {
-    await web3FunctionHelper.secrets.set(secrets, taskId);
-    console.log("Secrets set");
-  }
 };
 
 main()

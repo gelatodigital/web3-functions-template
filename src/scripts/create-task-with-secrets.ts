@@ -1,3 +1,4 @@
+import path from "path";
 import dotenv from "dotenv";
 import { ethers } from "ethers";
 import { Web3Function, AutomateSDK } from "@gelatonetwork/automate-sdk";
@@ -13,7 +14,7 @@ const providerUrl = process.env.PROVIDER_URL;
 
 // Default Setting
 const chainId = 5;
-const w3fRootDir = "src/web3-functions";
+const w3fRootDir = path.join("src", "web3-functions");
 const w3fName = "secrets";
 
 const main = async () => {
@@ -49,7 +50,6 @@ const main = async () => {
   const web3FunctionHelper = new Web3Function(chainId, wallet);
   if (Object.keys(secrets).length > 0) {
     await web3FunctionHelper.secrets.set(secrets, taskId);
-    console.log("Secrets set");
   }
 };
 
