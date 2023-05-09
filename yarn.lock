@@ -785,19 +785,19 @@
     command-exists "^1.2.9"
     ts-interface-checker "^0.1.9"
 
-"@gelatonetwork/automate-sdk@^2.6.0-betatest":
-  version "2.6.0-betatest"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.6.0-betatest.tgz#e7d678fbf69937910c3681d9e0020dab4648a978"
-  integrity sha512-e20/qTXWGmyAPA/8puJVLvvD83u31blmO9XQuDQiS8wUxTSeoOpqI4TORWOmpa49QB4Kk2el+Jn5cWgwF1lgGw==
+"@gelatonetwork/automate-sdk@^2.7.0-beta":
+  version "2.7.0-beta"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.7.0-beta.tgz#2489c53a09420189e739c113be7b3b1ce301afc8"
+  integrity sha512-Bi3f0RnHOQh/jjTMN2R713BMQJxpKdbgWDkLqbVSkt2YBmbF2pTyyF7wEMEnRJUgZxoj6Icc5gVsrmwkZzTi2w==
   dependencies:
     axios "^1.2.2"
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^2.0.2-betatest":
-  version "2.0.2-betatest"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.0.2-betatest.tgz#ac0ade3f98e0fb8cc2a19ff0266ed4c46ab47381"
-  integrity sha512-eXENDJk9OtcV/1rKR8wzZWHPc/3GMt10uvkp8mkGEu0rnUrn7e7at6WAk1ySUL2Ug/VPlipti28sLbhCEG6LUQ==
+"@gelatonetwork/web3-functions-sdk@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.0.3.tgz#ea6243404b8d430104e627595784900015601739"
+  integrity sha512-VutgsVycz2BH7wOQvYFf8x9CEd9Cnmxxn5JTiCijQ6ReXwEuFgbNt+6zmTX2l5OL8TTZ1Wo73PsQkTtoP4KLkA==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
