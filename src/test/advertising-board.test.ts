@@ -1,10 +1,12 @@
+import path from "path";
 import { Web3FunctionContextData } from "@gelatonetwork/web3-functions-sdk";
-import { fillSecrets } from "../scripts/fill-secrets";
+import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 import { runWeb3Function } from "./utils";
 import { AnvilServer } from "./utils/anvil-server";
 
-const oracleWeb3FunctionPath =
-  "src/web3-functions/examples/advertising-board/index.ts";
+const w3fName = "advertising-board";
+const w3fRootDir = path.join("src", "web3-functions");
+const w3fPath = path.join(w3fRootDir, w3fName, "index.ts");
 
 describe("Advertising Board Web3 Function test", () => {
   let context: Web3FunctionContextData;
@@ -16,16 +18,15 @@ describe("Advertising Board Web3 Function test", () => {
       forkUrl: "https://rpc.ankr.com/eth_goerli",
     });
 
-    // Fill up secrets with `SECRETS_*` env
-    const secrets = await fillSecrets();
+    const { secrets } = Web3FunctionLoader.load(w3fName, w3fRootDir);
+    const gasPrice = (await goerliFork.provider.getGasPrice()).toString();
 
     context = {
       secrets,
       storage: {},
       gelatoArgs: {
         chainId: 5,
-        blockTime: Math.floor(Date.now() / 1000),
-        gasPrice: "10",
+        gasPrice,
       },
       userArgs: {},
     };
@@ -40,14 +41,8 @@ describe("Advertising Board Web3 Function test", () => {
 
     // mock storage state of "lastPost"
     context.storage = { lastPost: blockTime.toString() };
-    // pass current block time
-    context.gelatoArgs.blockTime = blockTime;
 
-    const res = await runWeb3Function(
-      oracleWeb3FunctionPath,
-      context,
-      goerliFork.provider
-    );
+    const res = await runWeb3Function(w3fPath, context, [goerliFork.provider]);
 
     expect(res.result.canExec).toEqual(false);
   });
@@ -62,13 +57,8 @@ describe("Advertising Board Web3 Function test", () => {
 
     // pass current block time
     const blockTime = (await goerliFork.provider.getBlock("latest")).timestamp;
-    context.gelatoArgs.blockTime = blockTime;
 
-    const res = await runWeb3Function(
-      oracleWeb3FunctionPath,
-      context,
-      goerliFork.provider
-    );
+    const res = await runWeb3Function(w3fPath, context, [goerliFork.provider]);
 
     expect(res.result.canExec).toEqual(true);
 

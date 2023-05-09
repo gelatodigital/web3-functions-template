@@ -1,3 +1,4 @@
+import path from "path";
 import dotenv from "dotenv";
 import { ethers } from "ethers";
 import { AutomateSDK } from "@gelatonetwork/automate-sdk";
@@ -7,38 +8,32 @@ dotenv.config();
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
 const pk = process.env.PRIVATE_KEY;
 
-if (!process.env.PROVIDER_URL) throw new Error("Missing env PROVIDER_URL");
-const providerUrl = process.env.PROVIDER_URL;
-
-// Default Setting
-const chainId = 5;
-const adBoardAddress = "0x28a0A1C63E7E8F0DAe5ad633fe232c12b489d5f0";
-const adBoardAbi = [
-  "function postMessage(string)",
-  "function viewMessage(address)",
-];
+if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URL");
+const providerUrl = process.env.PROVIDER_URLS.split(",")[0];
 
 const main = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
+  const chainId = (await provider.getNetwork()).chainId;
   const wallet = new ethers.Wallet(pk as string, provider);
   const automate = new AutomateSDK(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3Function =
-    "./src/web3-functions/examples/advertising-board/index.ts";
-  const cid = await Web3FunctionBuilder.deploy(web3Function);
+
+  const web3FunctionPath = path.join(
+    "src",
+    "web3-functions",
+    "advertising-board",
+    "index.ts"
+  );
+  const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
   // Create task using automate-sdk
   console.log("Creating automate task...");
-  const adBoardInterface = new ethers.utils.Interface(adBoardAbi);
-  const { taskId, tx } = await automate.createTask({
+  const { taskId, tx } = await automate.createBatchExecTask({
     name: "Web3Function - Ad Board",
-    execAddress: adBoardAddress,
-    execSelector: adBoardInterface.getSighash("postMessage"),
-    dedicatedMsgSender: true,
     web3FunctionHash: cid,
     web3FunctionArgs: {},
   });

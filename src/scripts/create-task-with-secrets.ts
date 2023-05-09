@@ -1,45 +1,42 @@
+import path from "path";
 import dotenv from "dotenv";
 import { ethers } from "ethers";
 import { Web3Function, AutomateSDK } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
-import { fillSecrets } from "./fill-secrets";
+import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
 const pk = process.env.PRIVATE_KEY;
 
-if (!process.env.PROVIDER_URL) throw new Error("Missing env PROVIDER_URL");
-const providerUrl = process.env.PROVIDER_URL;
+if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URLS");
+const providerUrl = process.env.PROVIDER_URLS.split(",")[0];
 
-// Default Setting
-const chainId = 5;
-const oracleAddress = "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da";
-const oracleAbi = [
-  "function lastUpdated() external view returns(uint256)",
-  "function updatePrice(uint256)",
-];
+const w3fRootDir = path.join("src", "web3-functions");
+const w3fName = "secrets";
 
 const main = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
+  const chainId = (await provider.getNetwork()).chainId;
   const wallet = new ethers.Wallet(pk as string, provider);
   const automate = new AutomateSDK(chainId, wallet);
-  const web3Function = new Web3Function(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3FunctionPath = "./src/web3-functions/examples/secrets/index.ts";
+  const web3FunctionPath = path.join(
+    "src",
+    "web3-functions",
+    "secrets",
+    "index.ts"
+  );
   const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
   // Create task using automate-sdk
   console.log("Creating automate task...");
-  const oracleInterface = new ethers.utils.Interface(oracleAbi);
-  const { taskId, tx } = await automate.createTask({
+  const { taskId, tx } = await automate.createBatchExecTask({
     name: "Web3Function - Eth Oracle Secret Api",
-    execAddress: oracleAddress,
-    execSelector: oracleInterface.getSighash("updatePrice"),
-    dedicatedMsgSender: true,
     web3FunctionHash: cid,
     web3FunctionArgs: {
       oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
@@ -52,13 +49,12 @@ const main = async () => {
     `> https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
   );
 
-  const secrets = await fillSecrets();
-  await web3Function.secrets.set(secrets);
-
-  // Get updated list of secrets
-  const secretsList = await web3Function.secrets.list();
-  console.log(`Updated secrets list: `);
-  console.dir(secretsList);
+  // Set secrets
+  const { secrets } = Web3FunctionLoader.load(w3fName, w3fRootDir);
+  const web3FunctionHelper = new Web3Function(chainId, wallet);
+  if (Object.keys(secrets).length > 0) {
+    await web3FunctionHelper.secrets.set(secrets, taskId);
+  }
 };
 
 main()
