@@ -9,23 +9,27 @@ dotenv.config();
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
 const pk = process.env.PRIVATE_KEY;
 
-if (!process.env.PROVIDER_URL) throw new Error("Missing env PROVIDER_URL");
-const providerUrl = process.env.PROVIDER_URL;
+if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URLS");
+const providerUrl = process.env.PROVIDER_URLS.split(",")[0];
 
-// Default Setting
-const chainId = 5;
 const w3fRootDir = path.join("src", "web3-functions");
 const w3fName = "secrets";
 
 const main = async () => {
   // Instanciate provider & signer
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
+  const chainId = (await provider.getNetwork()).chainId;
   const wallet = new ethers.Wallet(pk as string, provider);
   const automate = new AutomateSDK(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3FunctionPath = "./src/web3-functions/examples/secrets/index.ts";
+  const web3FunctionPath = path.join(
+    "src",
+    "web3-functions",
+    "secrets",
+    "index.ts"
+  );
   const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
