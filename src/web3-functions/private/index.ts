@@ -26,7 +26,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
     const files = gistDetails.data.files;
 
-    if (!files) throw new Error(`No files in gist ${gistId}`);
+    if (!files) throw new Error(`No files in gist`);
 
     for (const file of Object.values(files)) {
       if (file?.filename === "onRun.js" && file.content) {
@@ -39,7 +39,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   } catch (err) {
     return {
       canExec: false,
-      message: `[${gistId}]: Error fetching gist: ${err.message}`,
+      message: `Error fetching gist: ${err.message}`,
     };
   }
 
@@ -59,13 +59,13 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
     if (onRunResult) {
       return onRunResult;
     } else {
-      return { canExec: false, message: `[${gistId}]: No result returned` };
+      return { canExec: false, message: `No result returned` };
     }
   } catch (err) {
     console.log(err);
     return {
       canExec: false,
-      message: `[${gistId}]: Error running gist: ${err.message}`,
+      message: `Error running gist: ${err.message}`,
     };
   }
 });
