@@ -40,6 +40,7 @@
     "@gelatonetwork/web3-functions-sdk": "^2.0.3",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
-    "ky": "^0.32.2"
+    "ky": "^0.32.2",
+    "octokit": "^2.0.19"
   }
 }
