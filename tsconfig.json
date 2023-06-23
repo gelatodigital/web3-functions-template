@@ -11,10 +11,9 @@
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types"],
     "outDir": "dist",
-    "rootDir": "src",
     "declaration": true,
     "useUnknownInCatchVariables": false
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "jest.config.ts"],
+  "include": ["scritps", "web3-functions", "jest.config.ts"],
   "exclude": ["node_modules"]
 }
