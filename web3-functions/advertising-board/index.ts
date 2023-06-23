@@ -45,8 +45,6 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
     return { canExec: false, message: `QuoteApi call failed` };
   }
 
-console.log(47)
-
   await storage.set("lastPost", timestamp.toString());
 
   return {
