@@ -21,7 +21,6 @@ const main = async () => {
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
   const web3FunctionPath = path.join(
-    "src",
     "web3-functions",
     "event-listener",
     "index.ts"

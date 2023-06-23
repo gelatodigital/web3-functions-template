@@ -54,7 +54,7 @@ PRIVATE_KEY="" # optional: only needed if you wish to create a task from the CLI
 
 ## Write a Web3 Function
 
-- Go to  `src/web3-functions/my-web3-function`
+- Go to  `web3-functions/my-web3-function`
 - Write your Web3 Function logic within the `Web3Function.onRun` function.
 - Example:
 ```typescript
@@ -127,11 +127,11 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   - `--debug` Show Runtime debug messages
   - `--chain-id=[number]` Specify the chainId to be used for your Web3 Function (default: `5` for Goerli)
 
-- Example:<br/> `npx w3f test src/web3-functions/oracle/index.ts --show-logs`
+- Example:<br/> `npx w3f test web3-functions/oracle/index.ts --show-logs`
 - Output:
   ```
 Web3Function Build result:
- ✓ Schema: src/web3-functions/oracle/schema.json
+ ✓ Schema: web3-functions/oracle/schema.json
  ✓ Built file: /Users/chuahsonglin/Documents/GitHub/Gelato/backend/js-resolver-template/.tmp/index.js
  ✓ File size: 1.63mb
  ✓ Build time: 91.34ms
@@ -162,13 +162,13 @@ Web3Function Runtime stats:
 
 ### Writing unit test for your web3 function
 
-- Define your tests in  `src/test/hellow-world.test.ts`
+- Define your tests in  `test/hellow-world.test.ts`
 - Use `yarn test` command to run unit test suite.
 
 You can fork a network in your unit test.
 RPC methods of provider can be found in [Foundry's Anvil docs](https://book.getfoundry.sh/reference/anvil/)
 
-Example: [`src/test/advertising-board.test.ts`](./src/test/advertising-board.test.ts)
+Example: [`test/advertising-board.test.ts`](./test/advertising-board.test.ts)
 
 ```ts
   import { AnvilServer } from "./utils/anvil-server";
@@ -221,7 +221,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 ```
 
 ```
-npx w3f test src/web3-functions/oracle/index.ts --logs
+npx w3f test web3-functions/oracle/index.ts --logs
 ```
 
 ## Use State / Storage
@@ -262,7 +262,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 ```
 
 Test storage execution:<br/>
-`npx w3f test src/web3-functions/storage/index.ts --logs`
+`npx w3f test web3-functions/storage/index.ts --logs`
 
 You will see your updated key/values:
 ```
@@ -288,14 +288,14 @@ if (!coingeckoApi)
 ```
 
 3. Test your Web3 Function using secrets:<br/>
-   `npx w3f test src/web3-functions/secrets/index.ts --logs`
+   `npx w3f test web3-functions/secrets/index.ts --logs`
 
 ## Deploy your Web3Function on IPFS
 
 Use `npx w3f deploy FILEPATH` command to deploy your web3 function.
 
 Example:<br/>
-`npx w3f deploy src/web3-functions/oracle/index.ts`
+`npx w3f deploy web3-functions/oracle/index.ts`
 
 The deployer will output your Web3Function IPFS CID, that you can use to create your task:
 ```
@@ -351,10 +351,10 @@ Task created, taskId: 0x8438933eb9c6e4632d984b4db1e7672082d367b900e536f86295b2e2
 
 Fetch price data from Coingecko API to update your on-chain Oracle
 
-Source: [`src/web3-functions/oracle/index.ts`](./src/web3-functions/oracle/index.ts)
+Source: [`web3-functions/oracle/index.ts`](./web3-functions/oracle/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/oracle/index.ts --logs`
+`npx w3f test web3-functions/oracle/index.ts --logs`
 
 Create task: <br/>
 `yarn create-task:oracle`
@@ -364,10 +364,10 @@ Create task: <br/>
 
 Listen to smart contract events and use storage context to maintain your execution state.
 
-Source: [`src/web3-functions/event-listener/index.ts`](./src/web3-functions/event-listener/index.ts)
+Source: [`web3-functions/event-listener/index.ts`](./web3-functions/event-listener/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/event-listener/index.ts --logs`
+`npx w3f test web3-functions/event-listener/index.ts --logs`
 
 Create task: <br/>
 `yarn create-task:event`
@@ -376,10 +376,10 @@ Create task: <br/>
 
 Fetch data from a private API to update your on-chain Oracle
 
-Source: [`src/web3-functions/secrets/index.ts`](./src/web3-functions/secrets/index.ts)
+Source: [`web3-functions/secrets/index.ts`](./web3-functions/secrets/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/secrets/index.ts --logs`
+`npx w3f test web3-functions/secrets/index.ts --logs`
 
 Create task: <br/>
 `yarn create-task:secrets`
@@ -388,10 +388,10 @@ Create task: <br/>
 
 Fetch a random quote from an API and post it on chain. 
 
-Source: [`src/web3-functions/advertising-board/index.ts`](./src/web3-functions/advertising-board/index.ts)
+Source: [`web3-functions/advertising-board/index.ts`](./web3-functions/advertising-board/index.ts)
 
 Run:<br/>
-`npx w3f test src/web3-functions/advertising-board/index.ts`
+`npx w3f test web3-functions/advertising-board/index.ts`
 
 Create task: <br/>
 `yarn create-task:ad-board`

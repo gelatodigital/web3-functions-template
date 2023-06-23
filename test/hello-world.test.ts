@@ -5,7 +5,7 @@ import { runWeb3Function } from "./utils";
 import { ethers } from "ethers";
 
 const w3fName = "hello-world";
-const w3fRootDir = path.join("src", "web3-functions");
+const w3fRootDir = path.join("web3-functions");
 const w3fPath = path.join(w3fRootDir, w3fName, "index.ts");
 
 describe("My Web3 Function test", () => {

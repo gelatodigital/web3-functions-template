@@ -786,18 +786,18 @@
     ts-interface-checker "^0.1.9"
 
 "@gelatonetwork/automate-sdk@^2.7.0-beta":
-  version "2.7.0-beta"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.7.0-beta.tgz#2489c53a09420189e739c113be7b3b1ce301afc8"
-  integrity sha512-Bi3f0RnHOQh/jjTMN2R713BMQJxpKdbgWDkLqbVSkt2YBmbF2pTyyF7wEMEnRJUgZxoj6Icc5gVsrmwkZzTi2w==
+  version "2.7.0-dev"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.7.0-dev.tgz#421793e6658d831b0cbb71845b815d8bc7dab0e7"
+  integrity sha512-exBWfYiC0/lQ7ulIg5HCg6YBZzh1JbxvEm+9Af4u0k29Ki5zA7g2E11OBhHCvZB5ed2Y5bkqrTBOe5f7caJzkA==
   dependencies:
     axios "^1.2.2"
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.0.3.tgz#ea6243404b8d430104e627595784900015601739"
-  integrity sha512-VutgsVycz2BH7wOQvYFf8x9CEd9Cnmxxn5JTiCijQ6ReXwEuFgbNt+6zmTX2l5OL8TTZ1Wo73PsQkTtoP4KLkA==
+"@gelatonetwork/web3-functions-sdk@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.0.7.tgz#7de6ead16c20db959162b8c177147ed02ba13a06"
+  integrity sha512-eMhimlVrVXzdhpZznRBAM48K4bS749L5iRbBlU6vvgOf3kU+xOfcCJiCj380+9UDMohxIrWThAHhUrJh6biy/Q==
   dependencies:
     "@types/dockerode" "^3.3.11"
     ajv "^8.11.0"
@@ -1807,9 +1807,9 @@ axios@1.1.2:
     proxy-from-env "^1.1.0"
 
 axios@^1.2.2:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.4.tgz#f5760cefd9cfb51fd2481acf88c05f67c4523024"
-  integrity sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
+  integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"

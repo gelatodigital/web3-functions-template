@@ -9,10 +9,10 @@
     "format:check": "prettier --check '*/**/*.{js,json,md,ts}'",
     "lint": "eslint --cache .",
     "test": "jest",
-    "create-task:event": "ts-node src/scripts/create-task-event-listener.ts",
-    "create-task:oracle": "ts-node src/scripts/create-task-oracle.ts",
-    "create-task:secrets": "ts-node src/scripts/create-task-with-secrets.ts",
-    "create-task:ad-board": "ts-node src/scripts/create-task-ad-board.ts"
+    "create-task:event": "ts-node scripts/create-task-event-listener.ts",
+    "create-task:oracle": "ts-node scripts/create-task-oracle.ts",
+    "create-task:secrets": "ts-node scripts/create-task-with-secrets.ts",
+    "create-task:ad-board": "ts-node scripts/create-task-ad-board.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@gelatonetwork/automate-sdk": "^2.7.0-beta",
-    "@gelatonetwork/web3-functions-sdk": "^2.0.3",
+    "@gelatonetwork/web3-functions-sdk": "^2.0.7",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "ky": "^0.32.2",

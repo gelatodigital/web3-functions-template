@@ -34,7 +34,7 @@ coverage
 typechain
 
 test/contracts/types
-src/logs/
+logs/
 
 .eslintcache
 

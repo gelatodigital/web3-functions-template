@@ -5,6 +5,7 @@ import {
 import { utils } from "ethers";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
+
 const AD_BOARD_ABI = [
   "function postMessage(string)",
   "function viewMessage(address)",
@@ -24,6 +25,8 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   const nextPostTime = lastPost + 3600; // 1h
   const timestamp = (await provider.getBlock("latest")).timestamp;
 
+
+
   if (timestamp < nextPostTime) {
     return { canExec: false, message: `Time not elapsed` };
   }
@@ -41,6 +44,8 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   } catch (err) {
     return { canExec: false, message: `QuoteApi call failed` };
   }
+
+console.log(47)
 
   await storage.set("lastPost", timestamp.toString());
 

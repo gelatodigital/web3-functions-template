@@ -8,7 +8,7 @@ dotenv.config();
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
 const pk = process.env.PRIVATE_KEY;
 
-if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URLS");
+if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URL");
 const providerUrl = process.env.PROVIDER_URLS.split(",")[0];
 
 const main = async () => {
@@ -20,10 +20,10 @@ const main = async () => {
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
+
   const web3FunctionPath = path.join(
-    "src",
     "web3-functions",
-    "oracle",
+    "advertising-board",
     "index.ts"
   );
   const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
@@ -32,12 +32,9 @@ const main = async () => {
   // Create task using automate-sdk
   console.log("Creating automate task...");
   const { taskId, tx } = await automate.createBatchExecTask({
-    name: "Web3Function - Eth Oracle",
+    name: "Web3Function - Ad Board",
     web3FunctionHash: cid,
-    web3FunctionArgs: {
-      oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
-      currency: "ethereum",
-    },
+    web3FunctionArgs: {},
   });
   await tx.wait();
   console.log(`Task created, taskId: ${taskId} (tx hash: ${tx.hash})`);
