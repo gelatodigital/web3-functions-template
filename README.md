@@ -129,7 +129,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 - Example:<br/> `npx w3f test web3-functions/oracle/index.ts --show-logs`
 - Output:
-  ```
+```
 Web3Function Build result:
  ✓ Schema: web3-functions/oracle/schema.json
  ✓ Built file: /Users/chuahsonglin/Documents/GitHub/Gelato/backend/js-resolver-template/.tmp/index.js
