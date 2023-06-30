@@ -129,7 +129,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
 - Example:<br/> `npx w3f test web3-functions/oracle/index.ts --show-logs`
 - Output:
-  ```
+```
 Web3Function Build result:
  ✓ Schema: web3-functions/oracle/schema.json
  ✓ Built file: /Users/chuahsonglin/Documents/GitHub/Gelato/backend/js-resolver-template/.tmp/index.js
@@ -181,6 +181,21 @@ Example: [`test/advertising-board.test.ts`](./test/advertising-board.test.ts)
   const forkedProvider = goerliFork.provider;
 ```
 
+### Calling your web3 function against a local node, i.e. Anvil (Foundry)
+1. Update your .env file with the RPC url
+
+2. Spin your local node 
+
+```
+npx run forkAnvil
+```
+3. Update the PROVIDE_URLS with the local server url, i.e. http://127.0.0.1:8545 
+
+4. Run your test
+
+```
+npx w3f test web3-functions/oracle/index.ts --show-logs
+```
 
 ## Use User arguments
 1. Declare your expected `userArgs` in your schema, accepted types are 'string', 'string[]', 'number', 'number[]', 'boolean', 'boolean[]':
