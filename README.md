@@ -127,7 +127,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   - `--debug` Show Runtime debug messages
   - `--chain-id=[number]` Specify the chainId to be used for your Web3 Function (default: `5` for Goerli)
 
-- Example:<br/> `npx w3f test web3-functions/oracle/index.ts --show-logs`
+- Example:<br/> `npx w3f test web3-functions/oracle/index.ts --logs`
 - Output:
 ```
 Web3Function Build result:
@@ -194,7 +194,7 @@ npx run forkAnvil
 4. Run your test
 
 ```
-npx w3f test web3-functions/oracle/index.ts --show-logs
+npx w3f test web3-functions/oracle/index.ts --logs
 ```
 
 ## Use User arguments
