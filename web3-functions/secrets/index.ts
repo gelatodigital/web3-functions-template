@@ -2,7 +2,7 @@ import {
   Web3Function,
   Web3FunctionContext,
 } from "@gelatonetwork/web3-functions-sdk";
-import { Contract } from "ethers";
+import { Contract } from "@ethersproject/contracts";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
 const ORACLE_ABI = [
