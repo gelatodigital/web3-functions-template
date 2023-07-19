@@ -59,7 +59,7 @@ PRIVATE_KEY="" # optional: only needed if you wish to create a task from the CLI
 - Example:
 ```typescript
 import { Web3Function, Web3FunctionContext } from "@gelatonetwork/web3-functions-sdk";
-import { Contract, ethers } from "ethers";
+import { Contract } from "@ethersproject/contracts";
 import ky from "ky"; // we recommend using ky as axios doesn't support fetch by default
 
 const ORACLE_ABI = [

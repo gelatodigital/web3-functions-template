@@ -3,7 +3,10 @@ import net from "net";
 import { ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 
 import { getAnvilCommand, checkAnvil, run } from "@foundry-rs/easy-foundryup";
-import { ethers } from "ethers";
+import {
+  JsonRpcProvider,
+  StaticJsonRpcProvider,
+} from "@ethersproject/providers";
 
 export declare interface AnvilOptions {
   url?: string;
@@ -36,12 +39,12 @@ export declare interface AnvilOptions {
 export class AnvilServer {
   private readonly _anvil: ChildProcessWithoutNullStreams;
   private readonly _options: AnvilOptions;
-  public provider: ethers.providers.JsonRpcProvider;
+  public provider: JsonRpcProvider;
 
   private constructor(
     options: AnvilOptions,
     anvil: ChildProcessWithoutNullStreams,
-    provider: ethers.providers.JsonRpcProvider
+    provider: JsonRpcProvider
   ) {
     this._options = options;
     this._anvil = anvil;
@@ -156,9 +159,7 @@ export class AnvilServer {
     }
 
     const providerUrl = `http://127.0.0.1:${options.port}`;
-    const anvilProvider = new ethers.providers.StaticJsonRpcProvider(
-      providerUrl
-    );
+    const anvilProvider = new StaticJsonRpcProvider(providerUrl);
     return new AnvilServer(options, anvil, anvilProvider);
   }
 

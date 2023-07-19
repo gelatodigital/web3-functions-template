@@ -1,6 +1,7 @@
 import path from "path";
 import dotenv from "dotenv";
-import { ethers } from "ethers";
+import { JsonRpcProvider } from "@ethersproject/providers";
+import { Wallet } from "@ethersproject/wallet";
 import { Web3Function, AutomateSDK } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
 import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
@@ -12,23 +13,19 @@ const pk = process.env.PRIVATE_KEY;
 if (!process.env.PROVIDER_URLS) throw new Error("Missing env PROVIDER_URLS");
 const providerUrl = process.env.PROVIDER_URLS.split(",")[0];
 
-const w3fRootDir = path.join( "web3-functions");
+const w3fRootDir = path.join("web3-functions");
 const w3fName = "secrets";
 
 const main = async () => {
   // Instanciate provider & signer
-  const provider = new ethers.providers.JsonRpcProvider(providerUrl);
+  const provider = new JsonRpcProvider(providerUrl);
   const chainId = (await provider.getNetwork()).chainId;
-  const wallet = new ethers.Wallet(pk as string, provider);
+  const wallet = new Wallet(pk as string, provider);
   const automate = new AutomateSDK(chainId, wallet);
 
   // Deploy Web3Function on IPFS
   console.log("Deploying Web3Function on IPFS...");
-  const web3FunctionPath = path.join(
-    "web3-functions",
-    "secrets",
-    "index.ts"
-  );
+  const web3FunctionPath = path.join("web3-functions", "secrets", "index.ts");
   const cid = await Web3FunctionBuilder.deploy(web3FunctionPath);
   console.log(`Web3Function IPFS CID: ${cid}`);
 
