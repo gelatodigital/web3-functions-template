@@ -2,7 +2,7 @@ import path from "path";
 import { Web3FunctionContextData } from "@gelatonetwork/web3-functions-sdk";
 import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
 import { runWeb3Function } from "./utils";
-import { ethers } from "ethers";
+import { parseUnits } from "@ethersproject/units";
 
 const w3fName = "hello-world";
 const w3fRootDir = path.join("web3-functions");
@@ -19,7 +19,7 @@ describe("My Web3 Function test", () => {
       storage: {},
       gelatoArgs: {
         chainId: 5,
-        gasPrice: ethers.utils.parseUnits("100", "gwei").toString(),
+        gasPrice: parseUnits("100", "gwei").toString(),
       },
       userArgs: {},
     };

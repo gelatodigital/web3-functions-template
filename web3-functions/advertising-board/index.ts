@@ -49,7 +49,9 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
     callData: [
       {
         to: adBoardAddress,
-        data: adBoardContract.encodeFunctionData("postMessage", [message]),
+        data: adBoardContract.interface.encodeFunctionData("postMessage", [
+          message,
+        ]),
       },
     ],
   };
