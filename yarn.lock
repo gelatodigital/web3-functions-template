@@ -785,20 +785,20 @@
     command-exists "^1.2.9"
     ts-interface-checker "^0.1.9"
 
-"@gelatonetwork/automate-sdk@^2.14.0-beta":
-  version "2.14.0-beta"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-2.14.0-beta.tgz#e67523c9068dc0bf588e4a58a6db086cbbd53077"
-  integrity sha512-dHP4PswCkhC+bVnetJdXsHMnmZcpdpAaI1xB2EsFPv75Vd1rf8U2SAc72Ah68F6iP6XTKtWjHTt4hl/KKWRiNw==
+"@gelatonetwork/automate-sdk@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/automate-sdk/-/automate-sdk-3.0.0.tgz#934448fdcb2bf9b2a1be18a83f2f5bdf369ef5bd"
+  integrity sha512-P4NyQksTumStiaHqN6Cix/yogY/FVnBzZ4pP4z3m1YuX7beFDVW9j7pSop3oJJl5rFPfo/vfXiPaPisg0jFLaQ==
   dependencies:
-    axios "^1.2.2"
+    axios "^1.4.0"
     buffer "^6.0.3"
     ethers "^5.5.2"
     siwe "^1.1.6"
 
-"@gelatonetwork/web3-functions-sdk@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.1.2.tgz#3e229a11746fa3c2771d9807f95ce4f863da9109"
-  integrity sha512-v74+ldG+jdWYGzw0CHYi6GC9dGDW3Hra+uhaUrU26C0vmY8BkMdWhwG9jUUjglzdsWjEidQfTStg2n6P0gIofw==
+"@gelatonetwork/web3-functions-sdk@^2.1.9":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@gelatonetwork/web3-functions-sdk/-/web3-functions-sdk-2.1.9.tgz#2fbd59d0810d65d273b44ee325312a45d048ed43"
+  integrity sha512-zagnL9IBPxnbZEky6fVFsJ9cQVV3YFx7XX/o2/6VbntYOeouBGzbHAC9wAupO0x/UJdKDRWoCh4ImYP9FS91jQ==
   dependencies:
     "@ethersproject/address" "^5.7.0"
     "@ethersproject/contracts" "^5.7.0"
@@ -809,7 +809,8 @@
     axios "1.1.2"
     body-parser "^1.20.1"
     colors "^1.4.0"
-    deno-bin "^1.28.1"
+    deep-object-diff "^1.1.9"
+    deno-bin "^1.36.0"
     dockerode "^3.3.4"
     dotenv "^16.0.3"
     esbuild "^0.17.4"
@@ -817,7 +818,6 @@
     express "^4.18.2"
     form-data "^4.0.0"
     ky "^0.32.2"
-    object-hash "^3.0.0"
     pidusage "^3.0.1"
     semver "^7.5.0"
     signal-exit "^3.0.7"
@@ -1810,10 +1810,10 @@ axios@1.1.2:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-axios@^1.2.2:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
-  integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
+axios@^1.4.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
@@ -2251,6 +2251,11 @@ deep-is@^0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
 
+deep-object-diff@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/deep-object-diff/-/deep-object-diff-1.1.9.tgz#6df7ef035ad6a0caa44479c536ed7b02570f4595"
+  integrity sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==
+
 deepmerge@^4.2.2:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.3.0.tgz#65491893ec47756d44719ae520e0e2609233b59b"
@@ -2261,13 +2266,12 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
 
-deno-bin@^1.28.1:
-  version "1.30.0"
-  resolved "https://registry.yarnpkg.com/deno-bin/-/deno-bin-1.30.0.tgz#ea2a2b052ec15789c1cf19284000f76aea39b57f"
-  integrity sha512-Xix/o6JqyX/w/evKsvRt7KCd61cJB14JtaJ36Dw6tjpV0ztLNdOqM3ac/j6VIMvJZAertipPASN6M1B7ybX3Eg==
+deno-bin@^1.36.0:
+  version "1.38.3"
+  resolved "https://registry.yarnpkg.com/deno-bin/-/deno-bin-1.38.3.tgz#d276d3605db2d0f994359ca246bb7d2e49a16923"
+  integrity sha512-QNqeXjL+vkFkpqbQcuQMPhJtVeLTXqwDQ8h0ymW6ucoftZ2nuAjJnG0a7vYLh1p01LCMfxRADbHVeOKLT1Fy/g==
   dependencies:
     adm-zip "^0.5.4"
-    follow-redirects "^1.10.0"
 
 depd@2.0.0:
   version "2.0.0"
@@ -2804,7 +2808,7 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-follow-redirects@^1.10.0, follow-redirects@^1.15.0:
+follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
@@ -3882,11 +3886,6 @@ npm-run-path@^4.0.1:
   integrity sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
   dependencies:
     path-key "^3.0.0"
-
-object-hash@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-3.0.0.tgz#73f97f753e7baffc0e2cc9d6e079079744ac82e9"
-  integrity sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==
 
 object-inspect@^1.9.0:
   version "1.12.3"

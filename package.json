@@ -37,8 +37,8 @@
     "typescript": "^4.7.0"
   },
   "dependencies": {
-    "@gelatonetwork/automate-sdk": "^2.14.0-beta",
-    "@gelatonetwork/web3-functions-sdk": "^2.1.2",
+    "@gelatonetwork/automate-sdk": "^3.0.0",
+    "@gelatonetwork/web3-functions-sdk": "^2.1.9",
     "dotenv": "^16.0.3",
     "ky": "^0.32.2",
     "octokit": "^2.0.19"
