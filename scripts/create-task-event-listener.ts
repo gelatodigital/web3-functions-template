@@ -1,9 +1,9 @@
-import path from "path";
-import dotenv from "dotenv";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
-import { AutomateSDK } from "@gelatonetwork/automate-sdk";
+import { AutomateSDK, TriggerType } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
+import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -37,6 +37,10 @@ const main = async () => {
     web3FunctionArgs: {
       oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
       counter: "0x8F143A5D62de01EAdAF9ef16d4d3694380066D9F",
+    },
+    trigger: {
+      interval: 60 * 1000,
+      type: TriggerType.TIME,
     },
   });
   await tx.wait();
