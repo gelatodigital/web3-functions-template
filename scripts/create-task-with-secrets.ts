@@ -1,10 +1,14 @@
-import path from "path";
-import dotenv from "dotenv";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
-import { Web3Function, AutomateSDK } from "@gelatonetwork/automate-sdk";
+import {
+  AutomateSDK,
+  TriggerType,
+  Web3Function,
+} from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
 import { Web3FunctionLoader } from "@gelatonetwork/web3-functions-sdk/loader";
+import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -37,6 +41,10 @@ const main = async () => {
     web3FunctionArgs: {
       oracle: "0x71B9B0F6C999CBbB0FeF9c92B80D54e4973214da",
       currency: "ethereum",
+    },
+    trigger: {
+      interval: 60 * 1000,
+      type: TriggerType.TIME,
     },
   });
   await tx.wait();

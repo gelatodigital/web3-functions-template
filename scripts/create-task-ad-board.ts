@@ -1,9 +1,9 @@
-import path from "path";
-import dotenv from "dotenv";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
-import { AutomateSDK } from "@gelatonetwork/automate-sdk";
+import { AutomateSDK, TriggerType } from "@gelatonetwork/automate-sdk";
 import { Web3FunctionBuilder } from "@gelatonetwork/web3-functions-sdk/builder";
+import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 if (!process.env.PRIVATE_KEY) throw new Error("Missing env PRIVATE_KEY");
@@ -36,6 +36,10 @@ const main = async () => {
     name: "Web3Function - Ad Board",
     web3FunctionHash: cid,
     web3FunctionArgs: {},
+    trigger: {
+      interval: 60 * 1000,
+      type: TriggerType.TIME,
+    },
   });
   await tx.wait();
   console.log(`Task created, taskId: ${taskId} (tx hash: ${tx.hash})`);
